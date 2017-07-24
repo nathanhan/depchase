@@ -1,0 +1,82 @@
+document: modulemd
+version: 1
+data:
+    summary: PHP scripting language for creating dynamic web sites
+    description: PHP is an HTML-embedded scripting language. PHP attempts to make it
+                 easy for developers to write dynamically generated web pages. PHP also
+                 offers built-in database integration for several commercial and
+                 non-commercial database management systems, so writing a
+                 database-enabled webpage with PHP is fairly simple. The most common
+                 use of PHP coding is probably as a replacement for CGI scripts.
+                 The php package contains the module (often referred to as mod_php)
+                 which adds support for the PHP language to Apache HTTP Server.
+    license:
+        module: [PHP and Zend and BSD]
+    dependencies:
+        buildrequires:
+#           base-runtime: f26
+            bootstrap: f26  
+            common-build-dependencies: f26 
+#           shared-userspace: f26 
+            perl: f26 
+            postgresql: f26 
+            nginx: f26
+            httpd: f26 
+        requires:
+            perl: f26 
+            shared-userspace: f26 
+            base-runtime: f26 
+            httpd: f26 
+    references:
+        community: https://docs.pagure.org/modularity/
+        documentation: https://github.com/modularity-modules/php
+        tracker: https://github.com/modularity-modules/php
+    profiles:
+        default:
+            rpms:
+                - php
+    api:
+        rpms:
+                - php
+    components:
+        rpms:
+            php:
+                rationale:  php package.
+                ref: f26 
+                buildorder: 10
+#           nginx:
+#               rationale: Provides API for this module.
+#               ref: f26
+#               buildorder: 2
+            gperftools:
+                rationale: dependency
+                ref: f26
+                buildorder: 1
+            libmnl:
+                rationale: dependency
+                ref: f26
+                buildorder: 1
+            libnetfilter_conntrack:
+                rationale: dependency
+                ref: f26
+                buildorder: 1
+            libnfnetlink:
+                rationale: dependency
+                ref: f26
+                buildorder: 1
+            libunwind:
+                rationale: dependency
+                ref: f26
+                buildorder: 1
+            libxkbcommon:
+                rationale: dependency
+                ref: f26
+                buildorder: 1
+            mailcap:
+                rationale: dependency
+                ref: f26
+                buildorder: 1
+            xkeyboard-config:
+                rationale: dependency
+                ref: f26
+                buildorder: 1

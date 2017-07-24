@@ -1,0 +1,56 @@
+document: modulemd
+version: 1
+data:
+    summary: nginx webserver
+    description: an initial version of the nginx webserver module
+    license:
+        module: [ MIT ]
+    dependencies:
+        buildrequires:
+            bootstrap: f26
+        requires:
+            bootstrap: f26
+    references:
+        community: https://docs.pagure.org/modularity/
+        documentation: https://github.com/modularity-modules/nginx
+        tracker: https://github.com/modularity-modules/nginx
+    profiles:
+        default:
+            rpms:
+                - nginx
+    api:
+        rpms:
+            - nginx
+
+    filter:
+        rpms:
+            - nginx-all-modules
+            - nginx-mod-http-image-filter
+
+    components:
+        rpms:
+            nginx:
+                rationale: Provides API for this module.
+                ref: f26
+
+            libmnl:
+                rationale: dependency
+                ref: f26
+            libnetfilter_conntrack:
+                rationale: dependency
+                ref: f26
+            libnfnetlink:
+                rationale: dependency
+                ref: f26
+            libunwind:
+                rationale: dependency
+                ref: f26
+            libxkbcommon:
+                rationale: dependency
+                ref: f26
+            mailcap:
+                rationale: dependency
+                ref: f26
+            xkeyboard-config:
+                rationale: dependency
+                ref: f26

@@ -1,0 +1,97 @@
+document: modulemd
+version: 1
+data:
+    summary: httpd webserver
+    description: an initial version of the httpd webserver module
+    license:
+        module: [ MIT ]
+    dependencies:
+        buildrequires:
+            bootstrap: f26
+            # base-runtime: f26
+            # perl: f26
+            # common-build-dependencies: f26
+        requires:
+            bootstrap: master
+            # base-runtime: f26
+    references:
+        community: https://docs.pagure.org/modularity/
+        documentation: https://github.com/container-images/httpd
+        tracker: https://github.com/container-images/httpd
+    profiles:
+        # split into multiple profiles
+        default:
+            rpms:
+                - httpd
+        minimal:
+            description: Minimal profile installing only the httpd package.
+            rpms:
+                - httpd
+        secured:
+            description: Apache HTTP Server profile with SSL/TLS cryptography support
+            rpms:
+                - httpd
+                - mod_ssl
+        full:
+            description: Install all packages
+            rpms:
+                - httpd
+                - httpd-tools
+                - mod_ldap
+                - mod_proxy_html
+                - mod_session
+                - mod_ssl
+    api:
+        rpms:
+            - httpd
+            - httpd-tools
+            - mod_ldap
+            - mod_proxy_html
+            - mod_session
+            - mod_ssl
+    components:
+        rpms:
+            httpd:
+                rationale: Provides API for this module.
+                ref: f26
+                buildorder: 0
+            nghttp2:
+                rationale: Runtime dependency.
+                ref: f26
+            mod_http2:
+                rationale: Runtime dependency.
+                ref: f26
+            apr:
+                rationale: dependency of httpd
+                ref: f26
+                buildorder: 1
+            unixODBC:
+                rationale: dependency of apr-util
+                ref: f26
+                buildorder: 1
+            freetds:
+                rationale: dependency of apr-util  # requires docbook-style-dsssl
+                ref: f26
+                buildorder: 2
+            apr-util:
+                rationale: dependency of httpd  # requires also mysql-devel and postgresql-devel
+                ref: f26
+                buildorder: 3
+            # libmnl:
+            #     rationale: dependency
+            #     ref: f26
+            # libnetfilter_conntrack:
+            #     rationale: dependency
+            #     ref: f26
+            # libnfnetlink:
+            #     rationale: dependency
+            #     ref: f26
+            # libxkbcommon:
+            #     rationale: dependency
+            #     ref: f26
+            mailcap:
+                rationale: dependency
+                ref: f26
+            # xkeyboard-config:
+            #     rationale: dependency
+            #     ref: f26

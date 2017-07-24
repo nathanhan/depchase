@@ -544,5 +544,90 @@ def resolve(ctx, pkgnames, recommends, hint, selfhost):
     for p in itertools.chain(binary, source or ()):
         print(p)
 
+@cli.command()
+@click.argument("inputfile",type=click.Path(exists=True))
+@click.pass_context
+def graph(ctx, inputfile):
+
+    import modulemd
+    import pydot
+    import nahan
+
+    #read in and store input
+    big3, custom, ignore = nahan.readgraphmakerinput(inputfile)
+    big3 = nahan.onetimeload(big3)
+    #generate dot structure
+    dot = pydot.Dot(graph_type='digraph',simplify=True, compound=True)
+    #initialize labeling
+    innerlabel = {}
+    for key in big3:
+        innerlabel[key] = []
+
+    #chase deps
+    print("chasing everything at once")
+    hint = ()
+    recommends = False
+    selfhost = False
+    pool = setup_pool(ctx.obj["arch"], setup_repos(ctx.obj["config"]))
+    favorq = []
+    for n in hint:
+        sel = pool.select(n, solv.Selection.SELECTION_NAME)
+        favorq += sel.jobs(solv.Job.SOLVER_FAVOR)
+    pool.setpooljobs(favorq)
+    solver = pool.Solver()
+    if not recommends:
+        solver.set_flag(solv.Solver.SOLVER_FLAG_IGNORE_RECOMMENDED, 1)
+    binary, source = solve(solver, tuple(custom), selfhost=selfhost)
+    output = rules_table(solver)
+
+    test = str(output)
+    deps = nahan.chasedeps2(test)
+    tolabel = nahan.pastebig3(deps,ignore+["fedora-release","fedora-repos"], big3)
+
+    print("drawing everything at once")
+    #initialize label tracking
+    for key in list(tolabel):
+        innerlabel[key]+=list(tolabel[key])
+
+    #draw nodes
+    for key in deps:
+        if nahan.isinbigthree(key, big3) == "is-it":
+            dot.add_node(pydot.Node(key, shape="box"))
+        elif key in custom:
+            dot.add_node(pydot.Node(key))
+        else:
+            dot.add_node(pydot.Node(key,shape="plaintext"))
+    #draw edges
+    for key in deps:
+        for value in deps[key]:
+            dot.add_edge(pydot.Edge(key,value))
+    
+    #draw subgraphs around logical modules
+    print("drawing logical modules...")
+    for item in custom:
+        logicalmod = pydot.Cluster(item, fontname="Arial Bold",label = "proposed for " + item, style="filled", color="lightgrey")
+        lookuptable = [item]
+        nahan.get_loose(lookuptable,deps,big3)
+        #print(lookuptable)
+        for key in lookuptable:
+            if dot.get_node(key):
+                nodename = key
+            else:
+                nodename = '"' + key + '"'
+            #print(nodename)
+            logicalmod.add_node(dot.get_node(nodename)[0])
+            dot.del_node(dot.get_node(nodename)[0])
+        dot.add_subgraph(logicalmod)
+
+    #label box nodes with innards plus highlights
+    for key in big3:
+        if [x for x in innerlabel[key] if x in custom]:
+            finallabel = key + "\n" + "\n".join([x for x in innerlabel[key] if x in custom])
+            dot.add_node(pydot.Node(key, shape = "box",label=finallabel,color="red"))
+
+    outputfilename = 'graph.svg'
+    dot.write_svg(outputfilename)
+    print("success! output to " + outputfilename)
+
 if __name__ == "__main__":
     cli(obj={})

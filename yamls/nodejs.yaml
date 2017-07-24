@@ -1,0 +1,49 @@
+document: modulemd
+version: 1
+data:
+    summary: Javascript runtime
+    description: 'Node.js is a platform built on Chrome''s JavaScript runtime
+      for easily building fast, scalable network applications.
+      Node.js uses an event-driven, non-blocking I/O model that
+      makes it lightweight and efficient, perfect for data-intensive
+      real-time applications that run across distributed devices.'
+    license:
+        module: GPLv3
+        content:
+            - MIT
+            - ASL 2.0
+            - ISC
+            - BSD
+    dependencies:
+        buildrequires:
+            base-runtime: f26
+            shared-userspace: f26
+        requires:
+            base-runtime: f26
+            shared-userspace: f26
+    references:
+        community: https://fedoraproject.org/wiki/Modularity
+        documentation: https://fedoraproject.org/wiki/Fedora_Packaging_Guidelines_for_Modules
+        tracker: https://taiga.fedorainfracloud.org/project/modularity
+    profiles:
+        default:
+            rpms:
+                - nodejs
+                - npm
+        minimal:
+            rpms:
+                - nodejs
+    api:
+        rpms:
+            - npm
+            - nodejs
+    components:
+        rpms:
+            nodejs:
+                rationale: JavaScript runtime
+                # commit from f26 which enables bootstrapping
+                ref: b0da67b00a92f2ad570d91d6f50fb9b1786650c9
+                buildorder: 0
+            nodejs-packaging:
+                rationale: packaging macros for nodejs
+                ref: 037154a07e3fec45be281d29831d0b52e836bcce

@@ -1,0 +1,45 @@
+document: modulemd
+
+version: 1
+
+data:
+
+    name: dhcp-server
+    summary: "Provides the ISC DHCP server"
+
+    description: >
+            DHCP server provides network configuration information for DHCP clients.
+    license:
+        module:
+            - MIT
+        content: 
+            - ISC
+
+    dependencies:
+        buildrequires:
+            base-runtime: f26
+            perl: f26
+            common-build-dependencies: f26
+        requires:
+            base-runtime: f26
+
+    references:
+        community: https://docs.pagure.org/modularity/
+        documentation: https://github.com/modularity-modules/dhcp-server
+        tracker: https://github.com/modularity-modules/dhcp-server
+    profiles:
+        default:
+            rpms:
+                - dhcp-server
+    api:
+        rpms:
+            - dhcp-server
+    components:
+        rpms:
+            dhcp:
+                rationale: Provides API for this module.
+                ref: f26
+                buildorder: 10
+            bind99:
+                rationale: build dependency.
+                ref: f26

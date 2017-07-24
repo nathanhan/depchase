@@ -1,0 +1,144 @@
+document: modulemd
+version: 1
+data:
+    summary: A tool for building artifacts from source and injecting into docker images
+    description: A tool for building artifacts from source and injecting into docker images.
+    license:
+        module: [ MIT ]
+    dependencies:
+        buildrequires:
+            # base-runtime: f26
+            bootstrap: f26
+            common-build-dependencies: f26
+            # common-build-dependencies-bootstrap: f26
+            container-runtime: f26
+            shared-userspace: f26
+            perl: f26
+        requires:
+            bootstrap: f26
+            shared-userspace: f26
+            container-runtime: f26
+            perl: f26
+    references:
+        community: https://fedoraproject.org/wiki/Modularity
+        documentation: https://fedoraproject.org/wiki/Fedora_Packaging_Guidelines_for_Modules
+        tracker: https://taiga.fedorainfracloud.org/project/modularity
+    profiles:
+        default:
+            rpms:
+                - source-to-image
+    api:
+        rpms:
+            - source-to-image
+            - container-selinux
+    components:
+        rpms:
+            source-to-image:
+                rationale: A source-to-image build.
+                ref: f26
+                buildorder: 10
+            golang-github-golang-sys:
+                rationale: a basic dependency for golang.
+                ref: f26
+            golang-github-spf13-viper:
+                rationale: a basic dependency for golang.
+                ref: f26
+            golang-github-spf13-pflag:
+                rationale: a basic dependency for golang.
+                ref: f26
+            golang-googlecode-go-crypto:
+                rationale: a basic dependency for golang.
+                ref: f26
+            golang-googlecode-text:
+                rationale: a basic dependency for golang.
+                ref: f26
+            golang-github-golang-glog:
+                rationale: a basic dependency for golang.
+                ref: f26
+            golang-github-kr-fs:
+                rationale: a dependency of golang-github-spf13-cobra.
+                ref: f26
+            golang-gopkg-check:
+                rationale: a dependency of golang-github-spf13-cobra.
+                ref: f26
+            golang-gopkg-yaml:
+                rationale: a dependency of golang-github-spf13-cobra.
+                ref: f26
+            golang-github-pkg-errors:
+                rationale: a dependency of golang-github-spf13-cobra.
+                ref: f26
+            golang-github-pmezard-go-difflib:
+                rationale: a dependency of golang-github-spf13-jWalterWeatherman.
+                ref: f26
+            golang-github-pelletier-go-buffruneio:
+                rationale: a dependency of golang-github-spf13-cobra.
+                ref: f26
+            golang-github-gorilla-context:
+                rationale: a dependency of golang-github-gorilla-context.
+                ref: f26
+            golang-github-stretchr-testify:
+                rationale: a dependency of golang-github-spf13-jWalterWeatherman.
+                ref: f26
+            golang-github-stretchr-objx:
+                rationale: a dependency of golang-github-spf13-jWalterWeatherman.
+                ref: f26
+            golang-github-gorilla-mux:
+                rationale: a dependency of golang-github-spf13-cobra.
+                ref: f26
+                buildorder: 1
+            golang-googlecode-net:
+                rationale: a dependency of golang-github-pkg-sftp and golang-github-mitchellh-mapstructure.
+                ref: f26
+                buildorder: 1
+            golang-github-davecgh-go-spew:
+                rationale: a dependency of golang-github-hashicorp-hcl and golang-gitgub-spf13-JWalterWeatherman.
+                ref: f26
+                buildorder: 1
+            golang-github-mitchellh-mapstructure:
+                rationale: a dependency of golang-github-spf13-cobra.
+                ref: f26
+                buildorder: 2
+            golang-github-magiconair-properties:
+                rationale: a dependency of golang-github-spf13-cobra.
+                ref: f26
+                buildorder: 2
+            golang-github-spf13-jWalterWeatherman:
+                rationale: a dependency of golang-github-spf13-cast.
+                ref: f26
+                buildorder: 2
+            golang-github-pkg-sftp:
+                rationale: a dependency of golang-github-spf13-cobra.
+                ref: f26
+                buildorder: 2
+            golang-github-spf13-cast:
+                rationale: a dependency of golang-github-spf13-cobra.
+                ref: f26
+                buildorder: 5
+            golang-github-spf13-afero:
+                rationale: a dependency of golang-github-spf13-cobra.
+                ref: f26
+                buildorder: 5
+            golang-github-pelletier-go-toml:
+                rationale: a dependency of golang-github-spf13-cobra.
+                ref: f26
+                buildorder: 5
+            golang-github-hashicorp-hcl:
+                rationale: a dependency of golang-github-fsnotify-fsnotify.
+                ref: f26
+                buildorder: 5
+            golang-github-hashicorp-go-cleanhttp:
+                rationale: a dependency of golang-github-fsnotify-fsnotify.
+                ref: f26
+                buildorder: 5
+            golang-github-fsnotify-fsnotify:
+                rationale: a dependency of golang-github-spf13-cobra.
+                ref: f26
+                buildorder: 7
+            golang-github-spf13-cobra:
+                rationale: A dependency of source-to-image.
+                ref: f26
+                buildorder: 8
+            golang-github-fsouza-go-dockerclient:
+                rationale: A dependency of source-to-image.
+                ref: f26
+                buildorder: 8

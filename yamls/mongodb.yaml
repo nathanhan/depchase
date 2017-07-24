@@ -1,0 +1,70 @@
+document: modulemd
+version: 1
+data:
+    summary: MongoDB Module
+    description:  Mongo from humongous is a high-performance, open source, schema-free
+                  document-oriented database. MongoDB is written in C++ and offers the following features.  
+                  Collection oriented storage, easy storage of object/JSON-style data.  
+                  Dynamic queries.     
+                  Full index support, including on inner objects and embedded arrays.
+                  Query profiling.
+                  Replication and fail-over support.
+                  Efficient storage of binary data including large objects (e.g. photos and videos).
+                  Auto-sharding for cloud-level scalability (currently in early alpha).
+                  Commercial Support Available.
+                  A key goal of MongoDB is to bridge the gap between key/value stores (which are fast and highly scalable)
+                  and traditional RDBMS systems (which are deep in functionality).
+    license:
+        module: [ AGPLv3 and zlib and ASL 2.0 ]
+    dependencies:
+        buildrequires:
+            bootstrap: f26
+            common-build-dependencies: f26
+            perl: f26
+        requires:
+            base-runtime: f26
+            perl: f26
+            shared-userspace: f26
+    references:
+         community: https://docs.pagure.org/modularity/
+         documentation: https://github.com/container-images/mongodb/
+         tracker: https://github.com/modularity-modules/mongodb
+    profiles:
+        default:
+            rpms:
+                - mongodb
+                - mongodb-server
+                - gettext
+        server:
+            rpms:
+                - mongodb-server
+                - gettext
+        client:
+            rpms:
+                - mongodb
+    api:
+        rpms:
+                - mongodb
+                - mongodb-server
+    components:
+        rpms:
+            mongodb:
+                rationale:  MongoDB  package.
+                ref: f26
+                buildorder: 10
+            python-pymongo:
+                rationale:  MongoDB dependecy.
+                ref: f26
+                buildorder: 8
+            yaml-cpp:
+                rationale: MongoDB dependency.
+                ref: f26
+                buildorder: 9
+            asio:
+                rationale: MongoDB dependency.
+                ref: f26
+                buildorder: 7
+            mozjs45:
+                rationale: MongoDB dependency.
+                ref: f26 
+                buildorder: 1

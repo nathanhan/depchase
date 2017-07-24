@@ -1,0 +1,376 @@
+document: modulemd
+version: 1
+data:
+    summary: Practical Extraction and Report Language
+    description: >
+        Perl is a high-level programming language with roots in C, sed, awk
+        and shell scripting. Perl is good at handling processes and files, and
+        is especially good at handling text. Perl's hallmarks are practicality
+        and efficiency. While it is used to do a lot of different things,
+        Perl's most common applications are system administration utilities
+        and web programming.
+        This module has disabled SysteTap and groff support.
+    license:
+        module: [ MIT ]
+    dependencies:
+        buildrequires:
+            base-runtime: f26
+            perl-bootstrap: f26
+        requires:
+            base-runtime: f26
+    references:
+        community: https://fedoraproject.org/wiki/Modularity
+        documentation: https://fedoraproject.org/wiki/Fedora_Packaging_Guidelines_for_Modules
+        tracker: https://taiga.fedorainfracloud.org/project/modularity
+    profiles:
+        # Interpreter and all Perl modules bundled within upstream Perl
+        default:
+            rpms:
+                perl-core
+        # Only the interpreter as standalone executable
+        minimal:
+            rpms:
+                perl
+    filter:
+        rpms:
+            # This is provided by MBR, we do not need any different content
+            # there, not providing it will preserve MBR's NEVRA and that's
+            # good for dependend modules.
+            - perl-srpm-macros
+    components:
+        rpms:
+            # We need to build all (as in perl-bootstrap) RPM packages again
+            # because only those built from this module definition will get
+            # into the module compose.
+            # This perl-srpm-macros build must have higher NEVRA than a build
+            # from perl-bootstrap and must be built first.
+            perl-srpm-macros:
+                rationale: Control generating source packages.
+                ref: 2d2cd8711bd8ec5059308d85ca2fcc1fbbcf0aa2
+                buildorder: -1
+            # Then we can rebuild in a random order because we have all binary
+            # packages available from perl-bootstrap.
+            perl:
+                rationale: The Perl interpreter.
+                ref: f26
+            perl-Algorithm-Diff:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-Archive-Tar:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Archive-Zip:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-autodie:
+                rationale: Core Perl API.
+                ref: f26
+            perl-B-Debug:
+                rationale: Core Perl API.
+                ref: f26
+            perl-bignum:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Carp:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Compress-Bzip2:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-Compress-Raw-Bzip2:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Compress-Raw-Zlib:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Config-Perl-V:
+                rationale: Core Perl API.
+                ref: f26
+            perl-constant:
+                rationale: Core Perl API.
+                ref: f26
+            perl-CPAN:
+                rationale: Core Perl API.
+                ref: f26
+            perl-CPAN-Meta:
+                rationale: Core Perl API.
+                ref: f26
+            perl-CPAN-Meta-Requirements:
+                rationale: Core Perl API.
+                ref: f26
+            perl-CPAN-Meta-YAML:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Data-Dumper:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Data-OptList:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-Data-Section:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-DB_File:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Devel-PPPort:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Devel-Size:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-Digest:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Digest-MD5:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Digest-SHA:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Encode:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Env:
+                rationale: Core Perl API.
+                ref: f26
+            perl-experimental:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Exporter:
+                rationale: Core Perl API.
+                ref: f26
+            perl-ExtUtils-CBuilder:
+                rationale: Core Perl API.
+                ref: f26
+            perl-ExtUtils-Install:
+                rationale: Core Perl API.
+                ref: f26
+            perl-ExtUtils-MakeMaker:
+                rationale: Core Perl API.
+                ref: f26
+            perl-ExtUtils-Manifest:
+                rationale: Core Perl API.
+                ref: f26
+            perl-ExtUtils-ParseXS:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Fedora-VSP:
+                rationale: RPM dependency generator.
+                ref: f26
+            perl-File-Fetch:
+                rationale: Core Perl API.
+                ref: f26
+            perl-File-HomeDir:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-File-Path:
+                rationale: Core Perl API.
+                ref: f26
+            perl-File-Temp:
+                rationale: Core Perl API.
+                ref: f26
+            perl-File-Which:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-Filter:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Filter-Simple:
+                rationale: Core Perl API.
+                ref: f26
+            perl-generators:
+                rationale: RPM dependency generator.
+                ref: f26
+            perl-Getopt-Long:
+                rationale: Core Perl API.
+                ref: f26
+            perl-HTTP-Tiny:
+                rationale: Core Perl API.
+                ref: f26
+            perl-inc-latest:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-IO-Compress:
+                rationale: Core Perl API.
+                ref: f26
+            perl-IO-Socket-IP:
+                rationale: Core Perl API.
+                ref: f26
+            perl-IPC-Cmd:
+                rationale: Core Perl API.
+                ref: f26
+            perl-IPC-System-Simple:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-IPC-SysV:
+                rationale: Core Perl API.
+                ref: f26
+            perl-JSON-PP:
+                rationale: Core Perl API.
+                ref: f26
+            perl-libnet:
+                rationale: Core Perl API.
+                ref: f26
+            perl-local-lib:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-Locale-Codes:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Locale-Maketext:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Math-BigInt:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Math-BigInt-FastCalc:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Math-BigRat:
+                rationale: Core Perl API.
+                ref: f26
+            perl-MIME-Base64:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Module-Build:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-Module-CoreList:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Module-Load:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Module-Load-Conditional:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Module-Metadata:
+                rationale: Core Perl API.
+                ref: f26
+            perl-MRO-Compat:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-Package-Generator:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-Params-Check:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Params-Util:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-parent:
+                rationale: Core Perl API.
+                ref: f26
+            perl-PathTools:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Perl-OSType:
+                rationale: Core Perl API.
+                ref: f26
+            perl-perlfaq:
+                rationale: Core Perl API.
+                ref: f26
+            perl-PerlIO-via-QuotedPrint:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Pod-Checker:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Pod-Escapes:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Pod-Parser:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Pod-Perldoc:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Pod-Simple:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Pod-Usage:
+                rationale: Core Perl API.
+                ref: f26
+            perl-podlators:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Scalar-List-Utils:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Socket:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Software-License:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-Storable:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Sub-Exporter:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-Sub-Install:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-Sys-Syslog:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Term-ANSIColor:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Term-Cap:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Test-Harness:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Test-Simple:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Text-Balanced:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Text-Diff:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-Text-Glob:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-Text-ParseWords:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Text-Tabs+Wrap:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Text-Template:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-Thread-Queue:
+                rationale: Core Perl API.
+                ref: f26
+            perl-threads:
+                rationale: Core Perl API.
+                ref: f26
+            perl-threads-shared:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Time-HiRes:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Time-Local:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Unicode-Collate:
+                rationale: Core Perl API.
+                ref: f26
+            perl-Unicode-Normalize:
+                rationale: Core Perl API.
+                ref: f26
+            perl-URI:
+                rationale: A run-time dependency.
+                ref: f26
+            perl-version:
+                rationale: Core Perl API.
+                ref: f26

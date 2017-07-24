@@ -1,0 +1,29 @@
+document: modulemd
+version: 1
+data:
+    summary: HAProxy reverse proxy for high availability environments
+    description: HAProxy is a TCP/HTTP reverse proxy which is particularly suited for high availability environments.
+    license:
+        module: [ MIT ]
+    dependencies:
+        buildrequires:
+            base-runtime: f26
+        requires:
+            base-runtime: f26
+    references:
+        community: https://docs.pagure.org/modularity/
+        documentation: https://github.com/modularity-modules/haproxy
+        tracker: https://github.com/modularity-modules/haproxy
+    profiles:
+        default:
+            rpms:
+                - haproxy
+    api:
+        rpms:
+            - haproxy
+    components:
+        rpms:
+            haproxy:
+                rationale: A dependency of tangerine.
+                ref: f26
+                buildorder: 10

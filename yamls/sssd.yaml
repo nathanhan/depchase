@@ -1,0 +1,165 @@
+document: modulemd
+version: 1
+data:
+    summary: System Security Services Daemon
+    description: Provides a set of daemons to manage access to remote directories and authentication mechanisms. It provides an NSS and PAM interface toward the system and a plug-gable back-end system to connect to multiple different account sources. It is also the basis to provide client auditing and policy services for projects like FreeIPA. The sssd sub-package is a meta-package that contains the daemon as well as all the existing back ends.
+    license:
+        module: [ MIT ]
+    dependencies:
+        buildrequires:
+            bootstrap: f26
+            common-build-dependencies-bootstrap: f26
+            common-build-dependencies: f26
+            shared-userspace: f26
+            perl: f26
+        requires:
+            base-runtime: f26
+            perl: f26
+            shared-userspace: f26
+    references:
+        community: https://docs.pagure.org/modularity/
+        documentation: https://github.com/modularity-modules/sssd
+        tracker: https://github.com/modularity-modules/sssd
+    profiles:
+        default:
+            rpms:
+                - sssd
+                - sssd-ad
+                - sssd-common
+                - sssd-common-pac
+                - sssd-dbus
+                - sssd-ipa
+                - sssd-krb5
+                - sssd-krb5-common
+                - sssd-ldap
+                - sssd-libwbclient
+                - sssd-nfs-idmap
+                - sssd-proxy
+                - sssd-tools
+                - sssd-winbind-idmap
+                - realmd
+    api:
+        rpms:
+            - sssd
+            - sssd-ad
+            - sssd-common
+            - sssd-common-pac
+            - sssd-dbus
+            - sssd-ipa
+            - sssd-krb5
+            - sssd-krb5-common
+            - sssd-ldap
+            - sssd-libwbclient
+            - sssd-nfs-idmap
+            - sssd-proxy
+            - sssd-tools
+            - sssd-winbind-idmap
+            - libtevent
+            - libtalloc
+            - libtdb
+            - libwbclient
+            - libldb
+            - polkit-libs
+            - realmd
+    filter:
+        rpms:
+            - check
+            - check-devel
+            - ctdb
+            - ctdb-tests
+            - samba
+            - samba-client
+            - samba-common-libs
+            - samba-common-tools
+            - samba-dc
+            - samba-dc-libs
+            - samba-debuginfo
+            - samba-devel
+            - samba-krb5-printing
+            - samba-libs
+            - samba-pidl
+            - samba-python
+            - samba-test
+            - samba-test-libs
+            - samba-vfs-cephfs
+            - samba-vfs-glusterfs
+            - samba-winbind
+            - samba-winbind-clients
+            - samba-winbind-krb5-locator
+            - samba-winbind-modules
+            - nss_wrapper
+            - uid_wrapper
+    components:
+        rpms:
+            sssd:
+                rationale: A dependency of tangerine.
+                ref: f26
+                buildorder: 10
+            realmd:
+                rationale:  A dependency of sssd
+                ref: f26
+            libtevent:
+                rationale: A dependency of libldb and libtevent and cifs-utils.
+                ref: f26
+                buildorder: 5
+            libtalloc:
+                rationale: A dependency of libldb and libtevent and cifs-utils.
+                ref: f26
+                buildorder: 5
+            libtdb:
+                rationale: A dependency of libldb.
+                ref: f26
+                buildorder: 6
+            quota:
+                rationale: A dependency of samba.
+                ref: f26
+                buildorder: 6
+            libldb:
+                rationale: A dependency of samba.
+                ref: f26
+                buildorder: 7
+            bind:
+                rationale: A dependency of sssd.
+                ref: f26
+                buildorder: 9
+            check:
+                rationale: A dependency of sssd.
+                ref: f26
+                buildorder: 9
+            cifs-utils:
+                rationale: A dependency of sssd.
+                ref: f26
+                buildorder: 9
+            cmocka:
+                rationale: A dependency of sssd.
+                ref: f26
+                buildorder: 9
+            diffstat:
+                rationale: A dependency of sssd.
+                ref: f26
+                buildorder: 9
+            http-parser:
+                rationale: A dependency of sssd.
+                ref: f26
+                buildorder: 9
+            jansson:
+                rationale: A dependency of sssd.
+                ref: f26
+                buildorder: 9
+            libnl3:
+                rationale: A dependency of sssd.
+                ref: f26
+                buildorder: 9
+            nss_wrapper:
+                rationale: A dependency of sssd.
+                ref: f26
+                buildorder: 9
+            uid_wrapper:
+                rationale: A dependency of sssd.
+                ref: f26
+                buildorder: 9
+            samba:
+                rationale: A dependency of sssd.
+                ref: f26
+                buildorder: 9
+

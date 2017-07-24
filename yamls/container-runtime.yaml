@@ -1,0 +1,126 @@
+document: modulemd
+version: 1
+data:
+    summary: Automates deployment of containerized applications
+    description: >
+        Docker is an open-source engine that automates the deployment of any
+        application as a lightweight, portable, self-sufficient container that will
+        run virtually anywhere.
+
+        Docker containers can encapsulate any payload, and will run consistently on
+        and between virtually any server. The same container that a developer builds
+        and tests on a laptop will run at scale, in production*, on VMs, bare-metal
+        servers, OpenStack clusters, public instances, or combinations of the above.
+    license:
+        module:
+            - MIT
+        content:
+            - ASL 2.0
+    dependencies:
+        buildrequires:
+            # bootstrap: f26
+            shared-userspace: f26
+            base-runtime: f26
+            common-build-dependencies: f26
+            common-build-dependencies-bootstrap: f26
+            perl: f26
+            perl-bootstrap: f26
+            perl-libintl-perl: f26
+            perl-Module-Install: f26
+            perl-Module-Install-bootstrap: f26
+            perl-Module-Package: f26
+            perl-Moo: f26
+            perl-Unicode-EastAsianWidth: f26
+        requires:
+            # bootstrap: f26
+            shared-userspace: f26
+    references:
+        community: https://projectatomic.io
+        documentation: http://www.projectatomic.io/docs/
+        tracker: https://github.com/projectatomic/docker
+    profiles:
+        default:
+            rpms:
+                - docker
+        minimal:
+            description: Minimal profile installing only the docker package.
+            rpms:
+                - docker
+        vim:
+            description: Profile for vim users which installs Dockerfile syntax support for vim.
+            rpms:
+                - docker-vim
+        zsh:
+            description: Profile for zsh users which installs completion.
+            rpms:
+                - docker-zsh-completion
+        full:
+            description: Install all packages.
+            rpms:
+                - docker
+                - docker-common
+                - docker-rhel-push-plugin
+                - docker-vim
+                - docker-zsh-completion
+                - docker-rhsubscription
+                - docker-v1.10-migrator
+                - docker-common
+                - docker-logrotate
+                - docker-lvm-plugin
+                - docker-novolume-plugin
+                - container-storage-setup
+    api:
+        rpms:
+            - docker
+            - docker-common
+            - docker-rhel-push-plugin
+            - docker-vim
+            - docker-zsh-completion
+            - docker-rhsubscription
+            - docker-v1.10-migrator
+            - docker-common
+            - docker-logrotate
+            - docker-lvm-plugin
+            - docker-novolume-plugin
+            - container-storage-setup
+    filter: ~
+    components:
+        rpms:
+            docker:
+                rationale: This package carries the primary functionality.
+                ref: f26
+                buildorder: 1
+            container-storage-setup:
+                rationale: Runtime dependency of docker.
+                ref: f26
+                buildorder: 0
+            # perl-Error:
+            #     rationale: Runtime dependency of git.
+            #     ref: f26
+            #     buildorder: -1
+            # docbook-style-xsl:
+            #     rationale: Common build dep
+            # docbook-dtds:
+            #     rationale: Build dep of docbook-style-xsl
+            # intltool:
+            #     rationale: Build deps of libsecret
+            # vala:
+            #     rationale: Build deps of libsecret
+            # libsecret:
+            #     rationale: Runtime dep of git
+            # perl-Devel-Symdump:
+            #     rationale: Runtime dependency of git.
+            #     ref: f26
+            #     buildorder: -1
+
+            # golang-github-shurcooL-sanitized_anchor_name:
+            #     rationale: Build dependency of golang-github-russross-blackfriday.
+            #     ref: f26
+            # golang-github-russross-blackfriday:
+            #     rationale: Build dependency of golang-github-cpuguy83-go-md2man.
+            #     ref: f26
+            #     buildorder: 1
+            # golang-github-cpuguy83-go-md2man:
+            #     rationale: Build dependency of docker.
+            #     ref: f26
+            #     buildorder: 2

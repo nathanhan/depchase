@@ -1,0 +1,37 @@
+document: modulemd
+version: 1
+data:
+    summary: Internationalization library for Perl, compatible with gettext
+    description: >
+        The is an internationalization library for Perl that aims to be
+        compatible with the Uniforum message translations system as
+        implemented for example in GNU gettext.
+    license:
+        module: [ MIT ]
+    dependencies:
+        buildrequires:
+            base-runtime: f26
+            perl: f26
+        requires:
+            perl: f26
+    references:
+        community: https://docs.pagure.org/modularity/
+        documentation: https://github.com/modularity-modules/perl-libintl-perl
+        tracker: https://github.com/modularity-modules/perl-libintl-perl
+    api:
+        rpms:
+            - perl-libintl-perl
+    components:
+        rpms:
+            perl-Class-Inspector:
+                rationale: Optional run-time and build-time dependency.
+                ref: f26
+                buildorder: 0
+            perl-File-ShareDir:
+                rationale: Optional run-time and build-time dependency.
+                ref: f26
+                buildorder: 1
+            perl-libintl-perl:
+                rationale: The API.
+                ref: f26
+                buildorder: 2

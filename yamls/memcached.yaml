@@ -1,0 +1,34 @@
+document: modulemd
+version: 1
+data:
+    summary: High Performance, Distributed Memory Object Cache
+    description: Memcached is a high-performance, distributed memory object caching system, generic in nature, but intended for use in speeding up dynamic web applications by alleviating database load.
+    license:
+        module: [ MIT ]
+    dependencies:
+        buildrequires:
+            base-runtime: f26
+            # needs perl-generators
+            perl: f26
+            shared-userspace: f26
+        requires:
+            base-runtime: f26
+            # needs perl and perl-generators
+            perl: f26
+            shared-userspace: f26
+    references:
+        community: https://docs.pagure.org/modularity/
+        documentation: https://github.com/modularity-modules/memcached
+        tracker: https://github.com/modularity-modules/memcached
+    profiles:
+        default:
+            rpms:
+                - memcached
+    api:
+        rpms:
+            - memcached
+    components:
+        rpms:
+            memcached:
+                rationale: Primary component of this module.
+                ref: f26

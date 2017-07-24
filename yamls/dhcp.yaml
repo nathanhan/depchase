@@ -1,0 +1,94 @@
+document: modulemd
+version: 1
+data:
+    name: dhcp
+    summary: Provides the ISC DHCP client daemon and dhclient-script
+    description: >
+            DHCP (Dynamic Host Configuration Protocol) is a protocol which allows
+            individual devices on an IP network to get their own network
+            configuration information (IP address, subnetmask, broadcast address,
+            etc.) from a DHCP server. The overall purpose of DHCP is to make it
+            easier to administer a large network.
+
+            This package provides the ISC DHCP client.
+
+    license:
+        module:
+            - MIT
+        content: 
+            - ISC
+    dependencies:
+        buildrequires:
+            base-runtime: f26
+            common-build-dependencies: f26
+            shared-userspace: f26
+            perl: f26
+        requires:
+            base-runtime: f26
+            shared-userspace: f26
+    references:
+        community: https://fedoraproject.org/wiki/Modularity
+        documentation: https://github.com/container-images/dhcp
+        tracker: https://github.com/container-images/dhcp
+    profiles:
+        default:
+            rpms:
+                - dhcp-client
+                - dhcp-common
+                - dhcp-libs
+                - ipcalc
+                - iproute
+                - iputils
+    api:
+        rpms:
+            - dhcp-client
+            - dhcp-common
+            - dhcp-libs
+            - ipcalc
+            - iproute
+            - iputils
+    filter:
+        rpms:
+            - perl-SGMLpm
+    components:
+        rpms:
+            dhcp:
+                rationale: Provides API for this module.
+                ref: f26
+                buildorder: 10
+            bind99:
+                rationale: requirement for dhcp.
+                ref: f26
+            ipcalc:
+                rationale: requirement for dhcp.
+                ref: f26
+                buildorder: 5
+            libnetfilter_conntrack:
+                rationale: requirement for iproute.
+                ref: f26
+                buildorder: 2
+            libnfnetlink:
+                rationale: requirement for iproute.
+                ref: f26
+                buildorder: 1
+            iproute:
+                rationale: requirement for dhcp.
+                ref: f26
+                buildorder: 3
+            iputils:
+                rationale: requirement for dhcp.
+                ref: f26
+                buildorder: 4
+            libmnl:
+                rationale: requirement for dhcp.
+                ref: f26
+            perl-SGMLSpm:
+                rationale: requirement for dhcp.
+                ref: f26
+                buildorder: 2
+            GeoIP-GeoLite-data:
+                rationale: requirement for GeoIP.
+                ref: f26
+            GeoIP:
+                rationale: requirement for ipcalc.
+                ref: f26

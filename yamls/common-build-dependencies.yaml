@@ -1,0 +1,89 @@
+document: modulemd
+version: 1
+data:
+    summary: Common packages to build other packages
+    description: >
+        Common packages to build other packages (e.g. hostname, automake)
+    license:
+        module:
+            - MIT
+        # TODO:
+        content: []
+    dependencies:
+        buildrequires:
+            base-runtime: f26
+            perl: master
+        requires: {}
+    references:
+        community: https://github.com/container-images/common-build-depedencies
+        documentation: https://github.com/container-images/common-build-depedencies/blob/master/README.md
+        tracker: https://github.com/container-images/common-build-depedencies/issues
+    profiles:
+        default:
+            rpms: []
+    api:
+        rpms:
+            - hostname
+            - multilib-rpm-config
+            - help2man
+            # - texinfo
+    filter: ~
+    components:
+        rpms:
+            hostname:
+                rationale: build dep of golang
+                ref: f26
+            multilib-rpm-config:
+                rationale: build dep of mariadb
+                ref: f26
+            help2man:
+                rationale: build dep of autoconf
+                ref: f26
+#             texinfo:
+#                 rationale: build dep of libtool
+#                 ref: f26
+#                 buildorder: 7
+#             perl-libintl-perl:
+#                 rationale: build dep of texinfo
+#                 buildorder: 6
+#                 ref: f26
+#             perl-Text-Unidecode:
+#                 rationale: build dep of texinfo
+#                 buildorder: 6
+#                 ref: f26
+#             perl-Unicode-EastAsianWidth:
+#                 rationale: build dep of texinfo
+#                 buildorder: 6
+#                 ref: f26
+#             perl-Module-Package:
+#                 rationale: build dep of perl-Unicode-EastAsianWidth
+#                 buildorder: 5
+#                 ref: f26
+#             perl-Module-Package-Au:
+#                 rationale: build dep of perl-Unicode-EastAsianWidth
+#                 buildorder: 5
+#                 ref: f26
+#             perl-Pod-Markdown:
+#                 rationale: build dep of perl-Unicode-EastAsianWidth
+#                 buildorder: 5
+#                 ref: f26
+#             perl-Test-Differences:
+#                 rationale: build dep of perl-Pod-Markdown
+#                 buildorder: 4
+#                 ref: f26
+#             perl-Capture-Tiny:
+#                 rationale: build dep of perl-Test-Differences
+#                 buildorder: 3
+#                 ref: f26
+#             perl-Pod-Coverage:
+#                 rationale: build dep of perl-Test-Differences
+#                 buildorder: 3
+#                 ref: f26
+#             perl-Test-Pod-Coverage:
+#                 rationale: build dep of perl-Test-Differences
+#                 buildorder: 2
+#                 ref: f26
+#             perl-Test-Pod:
+#                 rationale: build dep of perl-Test-Differences
+#                 buildorder: 1
+#                 ref: f26

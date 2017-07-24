@@ -1,0 +1,88 @@
+document: modulemd
+version: 1
+data:
+    summary: MariaDB Module
+    description:  MariaDB is a community developed branch of MySQL.
+                  MariaDB is a multi-user, multi-threaded SQL database server.
+                  It is a client/server implementation consisting of a server daemon (mysqld)
+                  and many different client programs and libraries. The base package
+                  contains the standard MariaDB/MySQL client programs and generic MySQL files.
+    license:
+        module: [ GPLv2 with exceptions and LGPLv2 and BSD ]
+    dependencies:
+        buildrequires:
+            perl: f26
+            bootstrap: f26
+            common-build-dependencies: f26
+        requires:
+            shared-userspace: f26
+            base-runtime: f26
+            perl: f26
+    references:
+         community: https://docs.pagure.org/modularity/
+         documentation: https://github.com/container-images/mariadb/
+         tracker: https://github.com/modularity-modules/mariadb
+    profiles:
+        default:
+            rpms:
+                - mariadb
+                - mariadb-server 
+                - gettext
+        server:
+            rpms:
+                - mariadb-server 
+                - gettext
+        client:
+            rpms:
+                - mariadb 
+    api:
+        rpms:
+                - mariadb
+                - mariadb-server
+    filter:
+        rpms:   
+                - mariadb-bench
+                - mariadb-server-galera
+                - mariadb-server-utils
+    components:
+        rpms:
+            mariadb:
+                rationale:  MariaDB  package.
+                ref: private-f26-modules-mariadb-notests
+                buildorder: 10
+#            checkpolicy:
+#                rationale:  Dep of selinux-policy  package.
+#                ref: f26
+#                buildorder: 4
+#            dbus-glib:
+#                rationale:  Dep of policycoreutils  package.
+#                ref: f26
+#                buildorder: 3
+#            desktop-file-utils:
+#                rationale:  Dep of policycoreutils  package.
+#                ref: f26
+#                buildorder: 3
+#            libcgroup:
+#                rationale:  Dep of policycoreutils  package.
+#                ref: f26
+#                buildorder: 3
+#            compat-openssl10:
+#                rationale:  A dependency of mariadb.
+#                ref: f26
+#                buildorder: 5
+#            libaio:
+#                rationale:  A dependency of mariadb.
+#                ref: f26
+#                buildorder: 5
+#            libedit:
+#                rationale:  A dependency of mariadb.
+#                ref: f26
+#                buildorder: 5
+#            time:
+#                rationale:  A dependency of mariadb.
+#                ref: f26
+#                buildorder: 5
+            net-tools:
+                rationale:  A dependency of mariadb.
+                ref: f26
+                buildorder: 9

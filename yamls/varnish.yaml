@@ -1,0 +1,154 @@
+document: modulemd
+version: 1
+data:
+    summary: Varnish HTTP cache
+    description: An initial version of the Varnish cache module.
+    license:
+        module: [ MIT ]
+    dependencies:
+        buildrequires:
+            bootstrap: f26
+            # base-runtime: f26
+            # shared-userspace: f26
+            perl: f26
+        requires:
+            base-runtime: f26
+            perl: f26
+            shared-userspace: f26
+            # initscripts
+            installer: f26
+    references:
+        community: https://docs.pagure.org/modularity/
+        documentation: https://github.com/container-images/varnish
+        tracker: https://github.com/container-images/varnish
+    profiles:
+        default:
+            rpms:
+                - varnish
+    api:
+        rpms:
+            - varnish
+    components:
+        rpms:
+            varnish:
+                rationale: Provides API for this module.
+                ref: f26
+                buildorder: 1
+            jemalloc:
+                rationale: Runtime dependency.
+                ref: f26
+            logrotate:
+                rationale: Runtime dependency.
+                ref: f26
+            util-linux:
+                rationale: Runtime dependency.
+                ref: f26
+
+            # generic-release: 
+            #     rationale: dependency.
+            #     ref: f25
+            # hostname: 
+            #     rationale: dependency.
+            #     ref: f25
+            # initscripts: 
+            #     rationale: dependency.
+            #     ref: f25
+            # ipcalc: 
+            #     rationale: dependency.
+            #     ref: f25
+            # iproute: 
+            #     rationale: dependency.
+            #     ref: f25
+            # iputils: 
+            #     rationale: dependency.
+            #     ref: f25
+            # jemalloc: 
+            #     rationale: dependency.
+            #     ref: f25
+            # libedit: 
+            #     rationale: dependency.
+            #     ref: f25
+            # libmnl: 
+            #     rationale: dependency.
+            #     ref: f25
+            # logrotate: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-Carp: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-constant: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-Encode: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-Exporter: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-File-Path: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-File-Temp: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-Getopt-Long: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-HTTP-Tiny: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-MIME-Base64: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-parent: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-PathTools: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-Pod-Escapes: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-podlators: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-Pod-Perldoc: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-Pod-Simple: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-Pod-Usage: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-Scalar-List-Utils: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-Socket: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-Term-ANSIColor: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-Term-Cap: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-Text-ParseWords: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-Text-Tabs+Wrap: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-threads: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-threads-shared: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-Time-Local: 
+            #     rationale: dependency.
+            #     ref: f25
+            # perl-Unicode-Normalize: 
+            #     rationale: dependency.
+            #     ref: f25

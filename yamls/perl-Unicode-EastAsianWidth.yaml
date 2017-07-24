@@ -1,0 +1,121 @@
+document: modulemd
+version: 1
+data:
+    summary: East Asian Width properties
+    description: >
+        This module provide user-defined Unicode properties that deal with
+        width status of East Asian characters, as specified in
+        <http://www.unicode.org/unicode/reports/tr11/>.
+    license:
+        module: [ MIT ]
+    dependencies:
+        buildrequires:
+            base-runtime: f26
+            perl: f26
+            perl-Module-Install: f26
+            perl-Module-Package: f26
+            # Explicitely require perl-Moo to work around
+            # <https://pagure.io/fm-orchestrator/issue/530>.
+            perl-Moo: f26
+        requires:
+            perl: f26
+    references:
+        community: https://docs.pagure.org/modularity/
+        documentation: https://github.com/modularity-modules/perl-Unicode-EastAsianWidth
+        tracker: https://github.com/modularity-modules/perl-Unicode-EastAsianWidth
+    api:
+        rpms:
+            - perl-Unicode-EastAsianWidth
+    filter:
+        rpms:
+            - perl-Capture-Tiny
+            - perl-Devel-Symdump
+            - perl-Module-Install-AuthorRequires
+            - perl-Module-Install-AutoLicense
+            - perl-Module-Install-GithubMeta
+            - perl-Module-Install-ReadmeFromPod
+            - perl-Module-Install-ReadmeMarkdownFromPod
+            - perl-Module-Install-Repository
+            - perl-Module-Package-Au
+            - perl-Path-Class
+            - perl-Pod-Coverage
+            - perl-Pod-Markdown
+            - perl-srpm-macros
+            - perl-Test-Differences
+            - perl-Test-InDistDir
+            - perl-Test-Pod
+            - perl-Test-Pod-Coverage
+    components:
+        rpms:
+            perl-srpm-macros:
+                rationale: Build-time dependency.
+                ref: private-f27-modules-perl-Unicode-EastAsianWidth
+                buildorder: 0
+            perl-Capture-Tiny:
+                rationale: Build-time dependency.
+                ref: f26
+                buildorder: 1
+            perl-Devel-Symdump:
+                rationale: Build-time dependency.
+                ref: f26
+                buildorder: 1
+            perl-Module-Install-AuthorRequires:
+                rationale: Build-time dependency.
+                ref: f26
+                buildorder: 1
+            perl-Path-Class:
+                rationale: Build-time dependency.
+                ref: f26
+                buildorder: 1
+            perl-Test-InDistDir:
+                rationale: Build-time dependency.
+                ref: f26
+                buildorder: 1
+            perl-Test-Pod:
+                rationale: Build-time dependency.
+                ref: f26
+                buildorder: 1
+            perl-Module-Install-GithubMeta:
+                rationale: Build-time dependency.
+                ref: f26
+                buildorder: 2
+            perl-Module-Install-Repository:
+                rationale: Build-time dependency.
+                ref: f26
+                buildorder: 2
+            perl-Pod-Coverage:
+                rationale: Build-time dependency.
+                ref: f26
+                buildorder: 2
+            perl-Test-Pod-Coverage:
+                rationale: Build-time dependency.
+                ref: f26
+                buildorder: 3
+            perl-Module-Install-AutoLicense:
+                rationale: Build-time dependency.
+                ref: f26
+                buildorder: 4
+            perl-Test-Differences:
+                rationale: Build-time dependency.
+                ref: f26
+                buildorder: 4
+            perl-Pod-Markdown:
+                rationale: Build-time dependency.
+                ref: f26
+                buildorder: 5
+            perl-Module-Install-ReadmeFromPod:
+                rationale: Build-time dependency.
+                ref: f26
+                buildorder: 6
+            perl-Module-Install-ReadmeMarkdownFromPod:
+                rationale: Build-time dependency.
+                ref: f26
+                buildorder: 7
+            perl-Module-Package-Au:
+                rationale: Build-time dependency.
+                ref: f26
+                buildorder: 8
+            perl-Unicode-EastAsianWidth:
+                rationale: API.
+                ref: f26
+                buildorder: 9

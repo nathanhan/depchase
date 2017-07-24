@@ -1,0 +1,59 @@
+document: modulemd
+version: 1
+data:
+    summary: A first try of a proftpd module
+    description: An early-stage module of proftpd - a flexible, stable and highly-configurable FTP server
+    license:
+        module: [ MIT ]
+    dependencies:
+        buildrequires:
+            bootstrap: f26
+        requires:
+            bootstrap: f26
+    references:
+        community: https://fedoraproject.org/wiki/Modularity
+        documentation: https://github.com/container-images/proftpd
+        tracker: https://github.com/container-images/proftpd
+    profiles:
+        default:
+            rpms:
+                - proftpd
+    api:
+        rpms:
+            - proftpd
+    components:
+        rpms:
+            proftpd:
+                rationale: Provides API for this module.
+                ref: f26
+                buildorder: 10
+            GeoIP:
+                rationale: build dependency
+                ref: f26
+            GeoIP-GeoLite-data:
+                rationale: build dependency
+                ref: f26
+            libevent:
+                rationale: runtime dependency
+                ref: f26
+            libmemcached:
+                rationale: runtime dependency
+                ref: f26
+            libmnl:
+                rationale: runtime dependency
+                ref: f26
+            libnetfilter_conntrack:
+                rationale: runtime dependency
+                ref: f26
+            libnfnetlink:
+                rationale: runtime dependency
+                ref: f26
+            libxkbcommon:
+                rationale: runtime dependency
+                ref: f26
+            tcp_wrappers:
+                rationale: runtime dependency
+                ref: f26
+            xkeyboard-config:
+                rationale: runtime dependency
+                ref: f26

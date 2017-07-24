@@ -1,0 +1,81 @@
+document: modulemd
+version: 1
+data:
+  # name, stream, version are filled in by the build system
+  #name: ""
+  #stream: ""
+  #version: 0
+  summary: 'The programs needed to create and run a PostgreSQL server'
+  description: |-
+    PostgreSQL is an advanced Object-Relational database management system
+    (DBMS). The postgresql-server package contains the programs needed to
+    create and run a PostgreSQL server, which will in turn allow you to create
+    and maintain PostgreSQL databases.
+  license:
+    module:
+      - MIT
+    content:
+      - PostgreSQL
+  dependencies:
+    buildrequires:
+      base-runtime: f26
+      common-build-dependencies: f26
+      common-build-dependencies-bootstrap: f26
+      shared-userspace: f26
+      perl: f26
+    requires:
+      base-runtime: f26
+  api:
+    rpms:
+      - postgresql
+  profiles:
+    default:
+      rpms:
+        - postgresql-server 
+    client:
+      rpms:
+        - postgresql
+  filter: {}
+  components:
+    rpms:
+      # part of base-runtime:
+      # gettext
+      # part of common-build-dependencies:
+      # autoconf(uuid), multilib-rpm-config, docbook-utils
+      # part of shared-userspace:
+      # docbook-dtds, docbook-style-dsssl, libxslt, perl-SGMLSpm, python2, tcl
+      oniguruma:
+        rationale: 'Build dependency (for slang)'
+        ref: f26
+      perl-Data-UUID:
+        rationale: 'Build dependency (for uuid)'
+        ref: f26
+      rsh:
+        rationale: 'Build dependency (for lynx)'
+        ref: f26
+      telnet:
+        rationale: 'Build dependency (for lynx)'
+        ref: f26
+      slang:
+        buildorder: 1
+        rationale: 'Build dependency (for lynx)'
+        ref: f26
+      uuid:
+        buildorder: 1
+        rationale: 'Build dependency (for postgresql).'
+        ref: f26
+      lynx:
+        buildorder: 2
+        rationale: >-
+          Build dependency (for postgresql),
+        ref: f26
+      postgresql:
+        buildorder: 3
+        rationale: 'The API we want to provide.'
+        # This branch doesn't BR: systemtap(-devel), elinks which pulls in
+        # loads of other junk
+        ref: private-f27-modules
+      tcl-pgtcl:
+        buildorder: 4
+        rationale: 'Runtime dependency (for postgresql-pltcl)'
+        ref: f26

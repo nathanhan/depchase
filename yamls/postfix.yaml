@@ -1,0 +1,50 @@
+document: modulemd
+version: 1
+data:
+    summary: Postfix Mail Transport Agent
+    description: Postfix is a Mail Transport Agent (MTA).
+    license:
+        module: [ MIT ]
+    dependencies:
+        buildrequires:
+            base-runtime: f26
+            # dependency on perl-generators
+            perl: f26
+            # add dependency because of mariadb, postgresql, tinycdb
+            common-build-dependencies: f26
+            #common-build-dependencies-bootstrap: f26
+            shared-userspace: f26
+            postgresql: f26
+            mariadb: f26
+        requires:
+            base-runtime: f26
+            perl: f26
+            postgresql: private-f27-modules
+            mariadb: f26
+    references:
+        community: https://docs.pagure.org/modularity/
+        documentation: https://github.com/modularity-modules/postfix
+        tracker: https://github.com/modularity-modules/postfix
+    profiles:
+        default:
+            rpms:
+                - postfix
+    api:
+        rpms:
+            - postfix
+            - postfix-cdb
+            - postfix-ldap
+            - postfix-mysql
+            - postfix-pcre
+            - postfix-perl-scripts
+            - postfix-pgsql
+            - postfix-sqlite
+    components:
+        rpms:
+            postfix:
+                rationale: A dependency of tangerine.
+                ref: f26
+                buildorder: 10
+            tinycdb:
+                rationale: A dependency of tangerine.
+                ref: f26
