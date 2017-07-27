@@ -587,6 +587,7 @@ def pastebig3(dictionary, toignore, big3):
             #delete keys matching toignore names and empty keys, remove requested by user
             if (dictionary[key] == [] and key not in big3) or key in toignore:
                 del dictionary[key]
+            #below is not technically necessary due to libsolv bug
             elif "requested by user" in dictionary[key]:
                 dictionary[key] = [x for x in dictionary[key] if x!="requested by user"]
 

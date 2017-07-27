@@ -20,9 +20,13 @@ $ python3 setup.py install --user
 $ depchase -a x86_64 -c repos.cfg resolve [--selfhost] foo --hint bar
 ```
 
+```
+$ depchase -a x86_64 -c repos.cfg graph path_to_inputfile
+```
+
 ### Output
 
-Output is a list of binary and source packages which were required for
+```resolve``` output is a list of binary and source packages which were required for
 resolution. You can parse them into multiple files using simple bash
 script:
 
@@ -46,3 +50,5 @@ for f in $PREFIX-{binary,source}-packages-{full,short}.txt; do
   sort -u $f -o $f
 done
 ```
+
+```graph``` output is an svg visualizing the dependencies of target api packages specified in the input file.
