@@ -1,0 +1,12 @@
+existing_modules_start
+	/home/nahan/depchase/base-runtime.yaml
+	/home/nahan/depchase/common-build-dependencies.yaml
+	/home/nahan/depchase/shared-userspace.yaml
+existing_modules_end
+
+target_api_rpms_start
+	postgresql
+target_api_rpms_end
+
+ignore_packages_start
+ignore_packages_end

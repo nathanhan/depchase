@@ -7,8 +7,12 @@ import os
 
 def simplifypackname(name):
 
-	parseprocess = subprocess.run("./outputparse.sh",input=(name+"\n").encode("utf-8"),stdout=subprocess.PIPE)
-	return parseprocess.stdout.decode("utf-8")[:-1]
+	woarch = name.rsplit('.', 1)[0]
+	worel = woarch.rsplit('-', 1)[0]
+	wover = worel.rsplit('-', 1)[0]
+	return wover
+	#parseprocess = subprocess.run("outputparse.sh",input=(name+"\n").encode("utf-8"),stdout=subprocess.PIPE)
+	#return parseprocess.stdout.decode("utf-8")[:-1]
 
 #wrapper for depchase
 def chasedeps(packname):
@@ -131,17 +135,4 @@ def get_loose(lookuptable, dictionary, big3):
 	for key in dictionary:
 		if dictionary[key] and key not in lookuptable and set(dictionary[key]).issubset(lookuptable) and key not in big3:
 			lookuptable.append(key)
-			#return dictionary[key] + get_loose(key, dictionary, big3)
-	#return []
-
-#	for value in dictionary[towalk]:
-		
-
-#		walkforloose(value, dictionary, big3, ezpickings)
-
-
-#	for key in list(dictionary):
-#		if set(dictionary[key]).isdisjoint(big3) and towalk in dictionary[key]:
-#			ezpickings[key] = dictionary[key]
-#			del dictionary[key]
-#			walkforloose(key, dictionary, big3, ezpickings)
+			get_loose(lookuptable, dictionary, big3)

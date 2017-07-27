@@ -1,0 +1,7 @@
+depchase
+setup.py
+depchase.egg-info/PKG-INFO
+depchase.egg-info/SOURCES.txt
+depchase.egg-info/dependency_links.txt
+depchase.egg-info/requires.txt
+depchase.egg-info/top_level.txt

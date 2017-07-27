@@ -1,0 +1,1139 @@
+---
+document: modulemd
+version: 1
+data:
+    summary: Shared Userspace Module
+    description: A module that contains libraries, binaries, etc
+                 that are shared between all other modules.
+    license:
+        module:
+            - MIT
+    dependencies:
+        buildrequires:
+            # base-runtime: f26
+            perl: f26
+            # common-build-dependencies-bootstrap: f26
+            common-build-dependencies: f26
+            bootstrap: f26
+        requires:
+            base-runtime: f26
+            perl: f26
+    references:
+        community: https://fedoraproject.org/wiki/Modularity
+        documentation:
+            https://fedoraproject.org/wiki/Fedora_Packaging_Guidelines_for_Modules
+        tracker: https://taiga.fedorainfracloud.org/project/modularity
+    profiles:
+        default:
+            rpms:
+                - PyYAML
+                - alsa-lib
+                - augeas
+                - avahi
+                - atk
+                - bluez
+                - boost
+                - btrfs-progs
+                - cairo
+                - checkpolicy
+                - chrpath
+                - clang
+                - compat-openssl10
+                - compiler-rt
+                - cups
+                - cups-filters
+                - dbus-glib
+                - desktop-file-utils
+                - docbook-dtds
+                - epydoc
+                - fipscheck
+                - fontconfig
+                - freeglut
+                - freetype
+                - libfontenc 
+                - gdk-pixbuf2
+                - ghostscript
+                - ghostscript-fonts
+                - git
+                - glib2
+                - gnupg
+                - godep
+                - golang-github-cpuguy83-go-md2man
+                - golang-github-russross-blackfriday
+                - golang-github-shurcooL-sanitized_anchor_name
+                - gperftools-libs
+                - graphite2
+                - graphite2-devel
+                - gtk2
+                - gtk3
+                - harfbuzz
+                - harfbuzz-devel
+                - harfbuzz-icu
+                - hesiod
+                - hicolor-icon-theme
+                - hwdata
+                - icu
+                - python-IPy
+                - jasper
+                - jbigkit
+                - json-c
+                - lcms2
+                - less
+                - libICE
+                - libX11
+                - libXcomposite
+                - libXcursor
+                - libXdamage
+                - libXext
+                - libXfixes
+                - libXfont
+                - libXft
+                - libXi
+                - libXinerama
+                - libXmu
+                - libXp
+                - libXrandr
+                - libXrender
+                - libSM
+                - libXt
+                - libXxf86vm
+                - libXxf86vm-devel
+                - libcgroup
+                - libdaemon
+                - libdatrie
+                - libdrm
+                - libedit
+                - libglvnd
+                - libical
+                - libmodman
+                - libpciaccess
+                - libproxy
+                - libreport
+                - libtar
+                - libjpeg-turbo
+                # in BRT, but to old:
+                - libselinux
+                - libssh
+                - libstemmer
+                - libthai
+                - libtool
+                - libunwind
+                - libusb
+                - libusbx
+                - libuv
+                - libxcb
+                - libxshmfence
+                - libxslt
+                - lksctp-tools
+                - llvm
+                - mesa
+                - mesa-libGLU
+                - mesa-libGLU-devel
+                - mozjs17
+                - openjpeg2
+                - openssh
+                - pango
+                - parted
+                - perl-Error
+                - perl-TermReadKey
+                - pixman
+                - policycoreutils
+                - polkit
+                - polkit-pkla-compat
+                - poppler
+                - poppler-data
+                - python-pymongo
+                - python-rhsm-certificates
+                - python2
+                - qpdf
+                - satyr
+                - selinux-policy
+                - setools
+                - skopeo
+                - systemtap
+                - tcl
+                - tcp_wrappers
+                - time
+                - urw-fonts
+                - valgrind
+                - wayland
+                - xfsprogs
+                - xmlrpc-c
+                - xorg-x11-font-utils
+                - xorg-x11-proto-devel
+                - xorg-x11-xbitmaps
+                - xorg-x11-xtrans-devel
+                # FTBFS https://bugzilla.redhat.com/show_bug.cgi?id=1449809
+                # https://koji.fedoraproject.org/koji/taskinfo?taskID=19489426
+                # - libvirt
+                # FTBFS: https://bugzilla.redhat.com/show_bug.cgi?id=1448819
+                # - motif
+    api:
+        rpms:
+            - PyYAML
+            - alsa-lib
+            - atk
+            - augeas
+            - avahi
+            - bluez
+            - boost
+            - btrfs-progs
+            - cairo
+            - checkpolicy
+            - chrpath
+            - clang
+            - compat-openssl10
+            - compiler-rt
+            - cups
+            - cups-filters
+            - dbus-glib
+            - desktop-file-utils
+            - docbook-dtds
+            - epydoc
+            - fipscheck
+            - fontconfig
+            - freeglut
+            - freetype
+            - libfontenc 
+            - gdk-pixbuf2
+            - ghostscript
+            - ghostscript-fonts
+            - git
+            - glib2
+            - gnupg
+            - godep
+            - golang-github-cpuguy83-go-md2man
+            - golang-github-russross-blackfriday
+            - golang-github-shurcooL-sanitized_anchor_name
+            - gperftools-libs
+            - graphite2
+            - graphite2-devel
+            - gtk2
+            - harfbuzz
+            - harfbuzz-devel
+            - harfbuzz-icu
+            - hesiod
+            - hicolor-icon-theme
+            - hwdata
+            - icu
+            - python-IPy
+            - jasper
+            - jbigkit
+            - json-c
+            - lcms2
+            - less
+            - libICE
+            - libX11
+            - libXcomposite
+            - libXcursor
+            - libXdamage
+            - libXext
+            - libXfixes
+            - libXfont
+            - libXft
+            - libXi
+            - libXinerama
+            - libXmu
+            - libXp
+            - libXrandr
+            - libXrender
+            - libSM
+            - libXt
+            - libXxf86vm
+            - libXxf86vm-devel
+            - libcgroup
+            - libdaemon
+            - libdatrie
+            - libdrm
+            - libedit
+            - libglvnd
+            - libical
+            - libmodman
+            - libreport
+            - libpciaccess
+            - libproxy
+            - libreport-cli
+            - libtar
+            - libjpeg-turbo
+            # in BRT, but to old:
+            - libselinux
+            - libssh
+            - libstemmer
+            - libthai
+            - libtool
+            - libunwind
+            - libusb
+            - libusbx
+            - libuv
+            - libxcb
+            - libxshmfence
+            - libxslt
+            - lksctp-tools
+            - llvm
+            - mesa
+            - mesa-libGLU
+            - mesa-libGLU-devel
+            - mozjs17
+            - openjpeg2
+            - openssh
+            - pango
+            - parted
+            - perl-Error
+            - perl-TermReadKey
+            - pixman
+            - policycoreutils
+            - polkit
+            - polkit-pkla-compat
+            - poppler
+            - poppler-data
+            - python-pymongo
+            - python-rhsm-certificates
+            - python2
+            - qpdf
+            - satyr
+            - selinux-policy
+            - setools
+            - skopeo
+            - systemtap
+            - tcl
+            - tcp_wrappers
+            - time
+            - urw-fonts
+            - valgrind
+            - wayland
+            - xfsprogs
+            - xmlrpc-c
+            - xorg-x11-font-utils
+            - xorg-x11-proto-devel
+            - xorg-x11-xbitmaps
+            - xorg-x11-xtrans-devel
+            - rpcbind
+            - quota
+            - nfs-utils
+            - libtirpc
+            - libsecret
+            - ding-libs
+            - gssproxy
+            - libevent
+            - libnfsidmap
+            # FTBFS https://bugzilla.redhat.com/show_bug.cgi?id=1449809
+            # https://koji.fedoraproject.org/koji/taskinfo?taskID=19489426
+            # - libvirt
+            # FTBFS: https://bugzilla.redhat.com/show_bug.cgi?id=1448819
+            # - motif
+    filter:
+        rpms:
+            - augeas
+            - augeas-devel
+            - avahi-autoipd
+            - avahi-dnsconfd
+            - avahi-qt3
+            - avahi-qt3-devel
+            - avahi-qt4
+            - avahi-qt4-devel
+            - avahi-sharp
+            - avahi-ui-devel
+            - avahi-ui-gtk3
+            - avahi-ui-sharp
+            - avahi-ui-sharp-devel
+            - avahi-ui-tools
+            - clang-analyzer
+            - cups-ipptool
+            - cups-lpd
+            - boost-doctools
+            - boost-graph-mpich
+            - boost-graph-openmpi
+            - boost-mpich-devel
+            - boost-mpich
+            - boost-openmpi
+            - boost-openmpi-devel
+            - boost-openmpi-python
+            - boost-mpich-python
+            - fipscheck-devel
+            - fontpackages-devel
+            - fontpackages-tools
+            - ghostscript-doc
+            - ghostscript-gtk
+            - git-all
+            - git-cvs
+            - git-email
+            - git-gui
+            - git-svn
+            - gitk
+            - gitweb
+            - glib2-fam
+            - gtk2-immodules
+            - gtk3
+            - gtk3-devel
+            - gtk3-devel-docs
+            - gtk3-immodules
+            - gtk3-immodule-xim
+            - gtk3-tests
+            - json-c-devel
+            - libmodman-devel
+            - libproxy-bin
+            - libproxy-devel
+            - libproxy-gnome
+            - libproxy-kde
+            - libproxy-mozjs
+            - libproxy-pacrunner
+            - libproxy-webkitgtk4
+            - libreport-centos
+            - libreport-compat
+            - libreport-devel
+            - libreport-fedora
+            - libreport-gtk
+            - libreport-gtk-devel
+            - libreport-newt
+            - libreport-plugin-kerneloops
+            - libreport-plugin-logger
+            - libreport-plugin-mailx
+            - libreport-plugin-mantisbt
+            - libreport-plugin-rhtsupport
+            - libreport-plugin-systemd-journal
+            - libreport-plugin-ureport
+            - libreport-python
+            - libreport-python3
+            - libreport-web-devel
+            - libsecret-devel
+            - libselinux-ruby
+            - libtar-devel
+            - libtirpc-devel
+            - libtool
+            - libtool-ltdl-devel
+            - lynx
+            - mesa-libOpenCL
+            - mesa-libOpenCL-devel
+            - mesa-libwayland-egl-devel
+            - mesa-omx-drivers
+            - mesa-vulkan-devel
+            - mesa-vulkan-drivers
+            - mozjs17-devel
+            - mozjs38
+            - mozjs38-devel
+            - openjpeg2-devel
+            - openjpeg2-devel-docs
+            - openjpeg2-tools
+            - openjpeg2-mj2
+            - openjpeg2-mj2-devel
+            - openjpeg2-mj2-tools
+            - openjpeg2-jpwl
+            - openjpeg2-jpwl-devel
+            - openjpeg2-jpwl-tools
+            - openjpeg2-jpip
+            - openjpeg2-jpip-devel
+            - openjpeg2-jpip-tools
+            - openjpeg2-jp3d
+            - openjpeg2-jp3d-devel
+            - openjpeg2-jp3d-tools
+            - openssh-cavs
+            - openssh-clients-ssh1
+            - openssh-keycat
+            - openssh-ldap
+            - openssh-server
+            - pango-tests
+            - perl-Git-SVN
+            - perl-Test-Pod-Coverage
+            - policycoreutils-gui
+            - policycoreutils-python
+            - policycoreutils-sandbox
+            - poppler-cpp
+            - poppler-cpp-devel
+            - poppler-demos
+            - poppler-devel
+            - poppler-glib
+            - poppler-glib-devel
+            - poppler-glib-doc
+            - poppler-qt
+            - poppler-qt5
+            - poppler-qt5-devel
+            - poppler-qt-devel
+            - pprof
+            - qt5
+            - qt5-devel
+            - qt5-rpm-macros
+            - satyr-devel
+            - satyr-python
+            - satyr-python3
+            - selinux-policy-doc
+            - selinux-policy-mls
+            - selinux-policy-sandbox
+            - setools-console
+            - setools-console-analyses
+            - setools-gui
+            - systemtap-testsuite
+            - systemtap-initscript
+            - systemtap-runtime-java
+            - systemtap-server
+            # texinfo
+            - texinfo-tex
+            - util-linux-user
+            - vala
+            - vala-devel
+            - vala-doc
+            - valgrind-openmpi
+            - wayland-devel
+            - wayland-doc
+            - vulkan-devel
+            - xmlrpc-c-apps
+            - xmlrpc-c-client++
+            - xmlrpc-c-c++
+            - xmlrpc-c-devel
+            - xmlto-tex
+            - xmlto-xhtml
+            - python-rhsm  # requires python-dateutil and python-iniparse
+    components:
+        rpms:
+            # libtool provides libtool-ltdl, a runtime library:
+            libtool:
+                rationale: Build dep for many packages.
+                ref: f26
+                buildorder: 6
+            tcl:
+                rationale: dependency of python2.
+                ref: f26
+                buildorder: 5
+            glib2:
+                rationale: Build dep for many packages.
+                ref: f26
+                buildorder: 4
+            desktop-file-utils:
+                rationale: dependency of cups/python-cups/epydoc/policycoreutils
+                ref: f26
+                buildorder: 5
+            epydoc:
+                rationale: dependency of cups/python-cups.
+                ref: f26
+                buildorder: 7
+            python2:
+                rationale: dependency of many packages.
+                ref: 0268e323750ca7d4af3c78e13480cffc63b08f85
+                buildorder: 6
+            chrpath:
+                rationale: dependency of dbus-glib. build dependency of wayland.
+                ref: f26
+                buildorder: 1
+            dbus-glib:
+                rationale: dependency of policycoreutils.
+                ref: f26
+                buildorder: 5
+            libcgroup:
+                rationale: dependency of policycoreutils.
+                ref: f26
+                buildorder: 2
+            checkpolicy:
+                rationale: dependency of policycoreutils.
+                ref: f26
+                buildorder: 2
+            # in BRT, but to old:
+            libselinux:
+                rationale: dependency of policycoreutils.
+                ref: f26
+                buildorder: 5
+            policycoreutils:
+                rationale: dependency of selinux-policy.
+                ref: f26
+                buildorder: 6
+            alsa-lib:
+                rationale: Component for shared userspace - alsa-lib.
+                ref: f26
+                buildorder: 10
+            gtk2:
+                rationale: Component for shared userspace - gtk2.
+                ref: f26
+                buildorder: 10
+            libunwind:
+                rationale: Runtime requirement for gperftools.
+                ref: f26
+                buildorder: 11
+            cups-filters:
+                rationale: Runtime requirement for cups.
+                ref: f26
+                buildorder: 11
+            cups:
+                rationale: Requirement for gtk2.
+                ref: f26
+                buildorder: 5
+            libical:
+                rationale: Requirement for gtk2.
+                ref: f26
+                buildorder: 5
+            jbigkit:
+                rationale: Requirement for libtiff.
+                ref: f26
+                buildorder: 5
+            libjpeg-turbo:
+                rationale: Requirement for libtiff.
+                ref: f26
+                buildorder: 5
+            libtiff:
+                rationale: Runtime requirement for gtk2
+                ref: f26
+                buildorder: 6
+            bluez:
+                rationale: Requirement for gtk2.
+                ref: f26
+                buildorder: 11
+            docbook-dtds:
+                rationale: runtime requirement for boost-doctools.
+                ref: f26
+                buildorder: 6
+            docbook-style-xsl:
+                rationale: runtime requirement for boost-doctools. build requirement for wayland and gl-manpages.
+                ref: f26
+                buildorder: 6
+            atk:
+                rationale: Requirement for gtk2.
+                ref: f26
+                buildorder: 5
+            cairo:
+                rationale: Requirement for gtk2.
+                ref: f26
+                buildorder: 8
+            fontconfig:
+                rationale: Runtime requirement for cairo-devel.
+                ref: f26
+                buildorder: 8
+            pixman:
+                rationale: Runtime requirement for cairo-devel.
+                ref: f26
+                buildorder: 8
+            gdk-pixbuf2:
+                rationale: Requirement for gtk2.
+                ref: f26
+                buildorder: 5
+            pango:
+                rationale: Requirement for gtk2.
+                ref: f26
+                buildorder: 5
+            libXcomposite:
+                rationale: Requirement for gtk2.
+                ref: f26
+                buildorder: 5
+            libXcursor:
+                rationale: Requirement for gtk2.
+                ref: f26
+                buildorder: 5
+            libXdamage:
+                rationale: Requirement for gtk2.
+                ref: f26
+                buildorder: 5
+            libXfixes:
+                rationale: Requirement for gtk2.
+                ref: f26
+                buildorder: 5
+            libXi:
+                rationale: Requirement for gtk2.
+                ref: f26
+                buildorder: 5
+            libXinerama:
+                rationale: Requirement for gtk2.
+                ref: f26
+                buildorder: 5
+            libXrandr:
+                rationale: Requirement for gtk2.
+                ref: f26
+                buildorder: 5
+            libXrender:
+                rationale: Requirement for gtk2.
+                ref: f26
+                buildorder: 5
+            libyaml:
+                rationale: Runtime requirement for PyYAML.
+                ref: f26
+                buildorder: 12
+            libxml2:
+                rationale: Runtime requirement for shared-mime-info. Build requirement for wayland.
+                ref: f26
+                buildorder: 11
+            shared-mime-info:
+                rationale: Runtime requirement for gdk-pixbuf2.
+                ref: f26
+                buildorder: 12
+            hesiod:
+                rationale: Component for shared userspace - hesiod.
+                ref: f26
+                buildorder: 10
+            libusbx:
+                rationale: requirement for libusb.
+                ref: f26
+                buildorder: 8
+            libusb:
+                rationale: Component for shared userspace - libusb.
+                ref: f26
+                buildorder: 10
+            # FTBFS https://bugzilla.redhat.com/show_bug.cgi?id=1449809
+            # https://koji.fedoraproject.org/koji/taskinfo?taskID=19489426
+            # libvirt:
+            #     rationale: Component for shared userspace - libvirt-client.
+            #     ref: f26
+            #     buildorder: 10
+            libssh:
+                rationale: Requirement for libvirt-client.
+                ref: f26
+                buildorder: 5
+            libxslt:
+                rationale: Requirement for libvirt-client. Build requirement for wayland.
+                ref: f26
+                buildorder: 5
+            llvm:
+                rationale: Requirement for mesa.
+                ref: f26
+                buildorder: 6
+            compiler-rt:
+                rationale: Requirement for clang.
+                #ref: f26
+                # f26 HEAD needs llvm-4.0.1 which isn't available in f26 (yet)
+                ref: 6bcb3b7dbd6d081521df3be798997fe21665997f
+                buildorder: 7
+            clang:
+                rationale: Requirement for mesa.
+                ref: f26
+                buildorder: 8
+            mesa:
+                rationale: Component for shared userspace - mesa-libGL.
+                ref: f26
+                buildorder: 9
+            libXext:
+                rationale: Requirement for mesa-libGL.
+                ref: f26
+                buildorder: 5
+            libXmu:
+                rationale: Requirement for mesa-libGL.
+                ref: f26
+                buildorder: 5
+            libXxf86vm:
+                rationale: Requirement for mesa-libGL.
+                ref: f26
+                buildorder: 5
+            libdrm:
+                rationale: Requirement for mesa-libGL.
+                ref: f26
+                buildorder: 5
+            tcp_wrappers:
+                rationale: requirement for audit and others.
+                ref: f26
+                buildorder: 8
+            xorg-x11-proto-devel:
+                rationale: requirement for libX11.
+                ref: f26
+                buildorder: 8
+            xorg-x11-xtrans-devel:
+                rationale: requirement for libICE.
+                ref: f26
+                buildorder: 9
+            libICE:
+                rationale: requirement for libXt.
+                ref: f26
+                buildorder: 10
+            libXau:
+                rationale: Runtime requirement for libXp.
+                ref: f26
+                buildorder: 11
+            libxcb:
+                rationale: Runtime requirement for libX11-devel.
+                ref: f26
+                buildorder: 11
+            libxshmfence:
+                rationale: Requirement for mesa-libGL.
+                ref: f26
+                buildorder: 5
+            mesa-libGLU:
+                rationale: Component for shared userspace - mesa-libGLU.
+                ref: f26
+                buildorder: 10
+            # FTBFS: https://bugzilla.redhat.com/show_bug.cgi?id=1448819
+            #            motif:
+            #                rationale: Component for shared userspace - motif.
+            #                ref: f26
+            #                buildorder: 12
+            #
+            # gcc:
+            #     rationale: temporary update for bootstrap gcc.
+            #     ref: f26
+            #     buildorder: 2
+            libXft:
+                rationale: Requirement for motif.
+                ref: f26
+                buildorder: 5
+            libXp:
+                rationale: Requirement for motif.
+                ref: f26
+                buildorder: 5
+            libXt:
+                rationale: Requirement for motif.
+                ref: f26
+                buildorder: 11
+            xorg-x11-xbitmaps:
+                rationale: Requirement for motif.
+                ref: f26
+                buildorder: 5
+            libX11:
+                rationale: build and runtime dependency for many things.
+                ref: f26
+                buildorder: 5
+            icu:
+                rationale: Component for shared userspace - libicu.
+                ref: f26
+                buildorder: 10
+            libuv:
+                rationale: Component for shared userspace - libuv.
+                ref: f26
+                buildorder: 10
+            libedit:
+                rationale: Component for shared userspace - libedit.
+                ref: f26
+                buildorder: 10
+            libglvnd:
+                rationale: runtime requirement for cairo.
+                ref: f26
+                buildorder: 8
+            compat-openssl10:
+                rationale: Component for shared userspace - compat-openssl10.
+                ref: f26
+                buildorder: 10
+            lksctp-tools:
+                rationale: Requirement for compat-openssl10.
+                ref: f26
+                buildorder: 5
+            selinux-policy:
+                rationale: Component for shared userspace - selinux-policy.
+                ref: f26
+                buildorder: 10
+            time:
+                rationale: Component for shared userspace - time.
+                ref: f26
+                buildorder: 10
+            PyYAML:
+                rationale: Component for shared userspace - PyYAML.
+                ref: f26
+                buildorder: 10
+            boost:
+                rationale: Component for shared userspace - boost.
+                ref: f26
+                buildorder: 10
+            gperftools:
+                rationale: Component for shared userspace - gperftools.
+                ref: f26
+                buildorder: 10
+            libstemmer:
+                rationale: Component for shared userspace - libstemmer.
+                ref: f26
+                buildorder: 10
+            python-pymongo:
+                rationale: Component for shared userspace - python-pymongo.
+                ref: f26
+                buildorder: 10
+            git:
+                rationale: Build dependency of docker.
+                ref: f26
+                buildorder: 10
+            godep:
+                rationale: Build dependency of docker.
+                ref: f26
+                buildorder: 10
+            btrfs-progs:
+                rationale: Build dependency of docker.
+                ref: f26
+                buildorder: 10
+            golang-github-shurcooL-sanitized_anchor_name:
+                rationale: B-D of golang-github-russross-blackfriday.
+                ref: f26
+                buildorder: 11
+            golang-github-russross-blackfriday:
+                rationale: B-D of golang-github-cpuguy83-go-md2man.
+                ref: f26
+                buildorder: 12
+            golang-github-cpuguy83-go-md2man:
+                rationale: Build dependency of docker.
+                ref: f26
+                buildorder: 13
+            skopeo:
+                rationale: Build dependency of docker.
+                ref: f26
+                buildorder: 14
+            gnupg:
+                rationale: runtime dependency of docker.
+                ref: f26
+                buildorder: 15
+            parted:
+                rationale: runtime dependency of docker.
+                ref: f26
+                buildorder: 15
+            python-rhsm:
+                rationale: runtime dependency of docker.
+                ref: f26
+                buildorder: 15
+            xfsprogs:
+                rationale: runtime dependency of docker.
+                ref: f26
+                buildorder: 15
+            systemtap:
+                rationale: build and runtime dep of many packages.
+                ref: f26
+                buildorder: 15
+            xmlto:
+                rationale: libsecret dependency. build dependency for wayland.
+                ref: f26
+                buildorder: 12
+            vala:
+                rationale: build dependency for libsecret.
+                ref: f26
+                buildorder: 8
+            perl-Error:
+                rationale: Component for shared userspace - perl(Error).
+                ref: f26
+                buildorder: 15
+            perl-Test-Pod:
+                rationale: Requirement for perl(Error).
+                ref: f26
+                buildorder: 14
+            perl-Test-Pod-Coverage:
+                rationale: Requirement for perl(Error).
+                ref: f26
+                buildorder: 14
+            perl-TermReadKey:
+                rationale: Requirement for git.
+                ref: f26
+                buildorder: 14
+            valgrind:
+                rationale: Requirement for git.
+                ref: f26
+                buildorder: 12
+            harfbuzz:
+                rationale: Runtime req for pango, pango-devel.
+                ref: f26
+                buildorder: 12
+            libthai:
+                rationale: Runtime req for pango.
+                ref: f26
+                buildorder: 12
+            avahi:
+                rationale: Runtime req for cups and others.
+                ref: f26
+                buildorder: 12
+            fontpackages:
+                rationale: Runtime req for fontconfig.
+                ref: f26
+                buildorder: 12
+            liberation-fonts:
+                rationale: Runtime req for fontconfig.
+                ref: f26
+                buildorder: 12
+            # TODO: git <- libsecret <- {gtk-doc, intltool}
+            libsecret:
+                rationale: Runtime req for git.
+                ref: f26
+                buildorder: 15
+            rpcbind:
+                rationale: Runtime requirement for nfs-utils.
+                ref: f26
+                buildorder: 15
+            quota:
+                rationale: Runtime requirement for nfs-utils.
+                ref: f26
+                buildorder: 15
+            libtirpc:
+                rationale: Runtime requirement for nfs-utils.
+                ref: f26
+                buildorder: 15
+            libevent:
+                rationale: Runtime requirement for nfs-utils.
+                ref: f26
+                buildorder: 15
+            libnfsidmap:
+                rationale: Runtime requirement for nfs-utils.
+                ref: f26
+                buildorder: 15
+            gssproxy:
+                rationale: Runtime requirement for nfs-utils.
+                ref: f26
+                buildorder: 15
+            ding-libs:
+                rationale: Runtime requirement for nfs-utils.
+                ref: f26
+                buildorder: 15
+            nfs-utils:
+                rationale: Component of shared-userspace.
+                ref: f26
+                buildorder: 16
+            graphite2:
+                rationale: runtime req of git and harfbuzz-devel.
+                ref: f26
+                buildorder: 15
+            libSM:
+                rationale: Requirement for libXt.
+                ref: f26
+                buildorder: 15
+            libpciaccess:
+                rationale: Requirement for libdrm.
+                ref: f26
+                buildorder: 15
+            gtk3:
+                rationale: runtime req for gtk2 ?.
+                ref: f26
+                buildorder: 15
+            libdatrie:
+                rationale: runtime req for libthai.
+                ref: f26
+                buildorder: 15
+            libdaemon:
+                rationale: runtime req for avahi.
+                ref: f26
+                buildorder: 15
+            lynx:
+                rationale: build req for libdaemon.
+                ref: f26
+                buildorder: 14
+            ghostscript:
+                rationale: req for cups-filters.
+                ref: f26
+                buildorder: 14
+            ghostscript-fonts:
+                rationale: req for ghostscript-core.
+                ref: f26
+                buildorder: 14
+            poppler-data:
+                rationale: runtime req for ghostscript-core.
+                ref: f26
+                buildorder: 13
+            polkit:
+                rationale: runtime req for ghostscript-core.
+                ref: f26
+                buildorder: 15
+            lcms2:
+                rationale: runtime req for ghostscript-core.
+                ref: f26
+                buildorder: 15
+            poppler:
+                rationale: runtime req for cups-filters.
+                ref: f26
+                buildorder: 15
+            qpdf:
+                rationale: runtime req for cups-filters.
+                ref: f26
+                buildorder: 15
+            satyr:
+                rationale: runtime req for libreport.
+                ref: f26
+                buildorder: 15
+            augeas:
+                rationale: runtime req for libreport.
+                ref: f26
+                buildorder: 15
+            libreport:
+                rationale: runtime req for anaconda.
+                ref: f26
+                buildorder: 16
+            libpciaccess:
+                rationale: runtime req for libdrm.
+                ref: f26
+                buildorder: 16
+            hwdata:
+                rationale: runtime req for libpciaccess.
+                ref: f26
+                buildorder: 16
+            jasper:
+                rationale: runtime req for gdk-pixbuf2.
+                ref: f26
+                buildorder: 16
+            libXxf86vm:
+                rationale: runtime req for freeglut.
+                ref: f26
+                buildorder: 15
+            freeglut:
+                rationale: runtime req for gdk-pixbuf2.
+                ref: f26
+                buildorder: 16
+            libfontenc:
+                rationale: req for xorg-x11-font-utils.
+                ref: f26
+                buildorder: 10
+            freetype:
+                rationale: req for many packages.
+                ref: f26
+                buildorder: 10
+            libXfont:
+                rationale: req for many packages.
+                ref: f26
+                buildorder: 11
+            xorg-x11-font-utils:
+                rationale: req for many packages.
+                ref: f26
+                buildorder: 12
+            less:
+                rationale: req for many packages.
+                ref: f26
+                buildorder: 12
+            hicolor-icon-theme:
+                rationale: req for many packages.
+                ref: f26
+                buildorder: 12
+            mozjs17:
+                rationale: req for polkit.
+                ref: f26
+                buildorder: 10
+            openjpeg2:
+                rationale: req for many packages.
+                ref: f26
+                buildorder: 10
+            fipscheck:
+                rationale: req for openssl-clients.
+                ref: f26
+                buildorder: 10
+            openssh:
+                rationale: req for systemtap-client.
+                ref: f26
+                buildorder: 12
+            urw-fonts:
+                rationale: req for ghostscript-core.
+                ref: f26
+                buildorder: 12
+            libtar:
+                rationale: req for libreport.
+                ref: f26
+                buildorder: 12
+            json-c:
+                rationale: req for libreport.
+                ref: f26
+                buildorder: 12
+            libmodman:
+                rationale: req for libproxy.
+                ref: f26
+                buildorder: 12
+            mozjs38:
+                rationale: build req for libproxy.
+                ref: f26
+                buildorder: 13
+            libproxy:
+                rationale: req for libreport.
+                ref: f26
+                buildorder: 14
+            xmlrpc-c:
+                rationale: req for libreport.
+                ref: f26
+                buildorder: 13
+            python-IPy:
+                rationale: req for policycoreutils-python3.
+                ref: f26
+                buildorder: 13
+            setools:
+                rationale: req for policycoreutils-python3.
+                ref: f26
+                buildorder: 13
+            polkit-pkla-compat:
+                rationale: req for polkit.
+                ref: f26
+                buildorder: 13
+            wayland:
+                rationale: runtime req for mesa-libEGL (libwayland-*).
+                ref: f26
+                buildorder: 13
+            docbook5-style-xsl:
+                rationale: build requirement for gl-manpages.
+                ref: f26
+                buildorder: 13
+            gl-manpages:
+                rationale: runtime requirement for mesa-libGLU-devel
+                ref: f26
+                buildorder: 14
