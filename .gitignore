@@ -5,3 +5,6 @@
 *py[oc]
 *.swp
 /src/depchase/__pycache__
+*.yaml
+Fedora-26-Beta-repos.cfg
+graph.svg

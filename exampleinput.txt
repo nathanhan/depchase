@@ -5,7 +5,14 @@ existing_modules_start
 existing_modules_end
 
 target_api_rpms_start
-	postgresql
+	modname: httpd
+	httpd
+	php
+target_api_rpms_end
+
+target_api_rpms_start
+	modname: nginx
+	nginx
 target_api_rpms_end
 
 ignore_packages_start

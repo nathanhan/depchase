@@ -543,9 +543,19 @@ def readgraphmakerinput(file):
         content = [x.strip() for x in inputfile.readlines()]
         content = [x for x in content if x]
         big3 = content[content.index("existing_modules_start")+1:content.index("existing_modules_end")]
-        custom = content[content.index("target_api_rpms_start")+1:content.index("target_api_rpms_end")]
+        custom = []
         ignore = content[content.index("ignore_packages_start")+1:content.index("ignore_packages_end")]
-    
+        
+        startindices = [i for i, x in enumerate(content) if x == "target_api_rpms_start"]
+        endindices = [i for i, x in enumerate(content) if x == "target_api_rpms_end"]
+        for index, listed in enumerate(zip(startindices,endindices)):
+            s = listed[0]
+            e = listed[1]
+            if content[s+1].startswith("modname: "):
+                custom.append([content[s+1][9:]]+content[s+2:e])
+            else:
+                custom.append(["unnamed module "+str(index)]+content[s+1:e])
+
     return [big3,custom,ignore]
 
 #discover if given package is in predefined modules
@@ -600,6 +610,22 @@ def get_loose(lookuptable, dictionary, big3):
             lookuptable.append(key)
             get_loose(lookuptable, dictionary, big3)
 
+#spit out grapher to new modulemd
+def makemodule(packset,deps,big3):
+    packs = packset[1:]
+    module = modulemd.ModuleMetadata()
+    module.name = packset[0]
+    for rpm in packs:
+        module.api.add_rpm(rpm)
+    for rpm in deps:
+        if isinbigthree(rpm,big3) != "" and deps[rpm]:
+            module.add_requires(rpm,"f26")
+        elif rpm not in packs and deps[rpm]:
+            module.components.add_rpm(rpm,'FIXME: Runtime dependency for ' + ','.join(deps[rpm]))
+    outputfilename = module.name + ".yaml"
+    module.dump(outputfilename)
+    print("modulemd output to " + os.getcwd() + "/" + outputfilename)
+
 @click.group()
 @click.option("-a", "--arch", required=True,
               help="Specify the CPU architecture.")
@@ -652,21 +678,21 @@ def resolve(ctx, pkgnames, recommends, hint, selfhost):
         print(p)
 
 @cli.command()
-@click.argument("inputfile",type=click.Path(exists=True))
+@click.argument("inputfile", type=click.Path(exists=True))
+@click.option("-g", "--generatemd", is_flag=True,
+                help="Dump grapher results into modulemd file.")
 @click.pass_context
-def graph(ctx, inputfile):
-    #read in and store input
+def graph(ctx, inputfile, generatemd):
+    ##reading input
     big3, custom, ignore = readgraphmakerinput(inputfile)
     big3 = onetimeload(big3)
-    #generate dot structure
-    dot = pydot.Dot(graph_type='digraph',simplify=True, compound=True)
-    #initialize inner labeling of big3
-    innerlabel = {}
-    for key in big3:
-        innerlabel[key] = []
 
-    #create solver and populate with rules
+    ##chasing deps
     print("chasing everything at once")
+    allset = []
+    for packset in custom:
+        allset+=packset[1:]
+    #create solver and populate with rules
     hint = ()
     recommends = False
     selfhost = False
@@ -679,55 +705,92 @@ def graph(ctx, inputfile):
     solver = pool.Solver()
     if not recommends:
         solver.set_flag(solv.Solver.SOLVER_FLAG_IGNORE_RECOMMENDED, 1)
-    binary, source = solve(solver, tuple(custom), selfhost=selfhost)
+    binary, source = solve(solver, tuple(allset), selfhost=selfhost)
     output = rules_table(solver)
     #store rules in dict of values requiring keys, clean it up
-    test = str(output)
-    deps = chasedeps2(test)
+    deps = chasedeps2(str(output))
     tolabel = pastebig3(deps,ignore+["fedora-release","fedora-repos"], big3)
 
-    print("drawing everything at once")
+    ##drawing graph
+    #initialize inner labeling of big3
+    innerlabel = {}
+    for key in big3:
+        innerlabel[key] = []
     #populate inner labeling
     for key in list(tolabel):
         innerlabel[key]+=list(tolabel[key])
-
-    #draw nodes
+    #generate dot structure
+    dot = pydot.Dot(graph_type='digraph',simplify=True, compound=True)
     for key in deps:
         if isinbigthree(key, big3) == "is-it":
-            dot.add_node(pydot.Node(key, shape="box"))
-        elif key in custom:
-            dot.add_node(pydot.Node(key))
-        else:
-            dot.add_node(pydot.Node(key,shape="plaintext"))
+            dot.add_node(pydot.Node(key, shape="invhouse"))
     #draw edges
     for key in deps:
         for value in deps[key]:
             dot.add_edge(pydot.Edge(key,value))
-    #draw subgraphs around logical modules
-    print("drawing logical modules...")
-    for item in custom:
-        logicalmod = pydot.Cluster(item, fontname="Arial Bold",label = "proposed for " + item, style="filled", color="lightgrey")
-        lookuptable = [item]
-        get_loose(lookuptable,deps,big3)
-        for key in lookuptable:
-            if dot.get_node(key):
-                nodename = key
-            else:
-                nodename = '"' + key + '"'
-            logicalmod.add_node(dot.get_node(nodename)[0])
-            dot.del_node(dot.get_node(nodename)[0])
-        dot.add_subgraph(logicalmod)
+    #draw modules
+    for packset in custom:
+        modname = packset[0]+"_module"
+        packs = packset[1:]
+        packsetclust = pydot.Cluster(modname, fontname="Arial Bold",label = "proposed for " + modname)
 
+        print("drawing " + modname)
+        #draw nodes
+        uptable = packs[:]
+        get_loose(uptable,deps,big3)
+        for key in uptable:
+            if key in packs:
+                packsetclust.add_node(pydot.Node(key))
+            else:
+                packsetclust.add_node(pydot.Node(key,shape="plaintext"))
+        #draw submodules
+        for item in packs:
+            logicalmod = pydot.Cluster(item+"_submodule", fontname="Arial Bold",label = item+"_submodule")
+            lookuptable = [item]
+            get_loose(lookuptable,deps,big3)
+            for key in lookuptable:
+                if packsetclust.get_node(key):
+                    nodename = key
+                else:
+                    nodename = '"' + key + '"'
+                logicalmod.add_node(packsetclust.get_node(nodename)[0])
+                packsetclust.del_node(packsetclust.get_node(nodename)[0])
+            packsetclust.add_subgraph(logicalmod)
+        dot.add_subgraph(packsetclust)
     #draw inner labels plus highlights
     for key in big3:
         if [x for x in innerlabel[key] if x in custom]:
             finallabel = key + "\n" + "\n".join([x for x in innerlabel[key] if x in custom])
             dot.add_node(pydot.Node(key, shape = "box",label=finallabel,color="red"))
 
-    #spit out output graph
-    outputfilename = 'depchasegraph.svg'
+    ##outputting file
+    outputfilename = 'graph.svg'
+    #to obtain flat dot file: dot.write("dot.dot")
     dot.write_svg(outputfilename)
     print("success! output to " + os.getcwd() + "/" + outputfilename)
+
+    ##optional output modulemd
+    if generatemd:
+        for packset in custom:
+            #create solver and populate with rules
+            hint = ()
+            recommends = False
+            selfhost = False
+            pool = setup_pool(ctx.obj["arch"], setup_repos(ctx.obj["config"]))
+            favorq = []
+            for n in hint:
+                sel = pool.select(n, solv.Selection.SELECTION_NAME)
+                favorq += sel.jobs(solv.Job.SOLVER_FAVOR)
+            pool.setpooljobs(favorq)
+            solver = pool.Solver()
+            if not recommends:
+                solver.set_flag(solv.Solver.SOLVER_FLAG_IGNORE_RECOMMENDED, 1)
+            binary, source = solve(solver, tuple(packset[1:]), selfhost=selfhost)
+            output = rules_table(solver)
+            #store rules in dict of values requiring keys, clean it up
+            deps = chasedeps2(str(output))
+            tolabel = pastebig3(deps,ignore+["fedora-release","fedora-repos"], big3)
+            makemodule(packset,deps,big3)
 
 if __name__ == "__main__":
     cli(obj={})
