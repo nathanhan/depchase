@@ -8,3 +8,4 @@
 *.yaml
 Fedora-26-Beta-repos.cfg
 graph.svg
+depchase.egg-info/
