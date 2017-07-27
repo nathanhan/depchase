@@ -704,14 +704,16 @@ def print_reldeps(ctx, pkg):
 @click.argument("inputfile", type=click.Path(exists=True))
 @click.option("-g", "--generatemd", is_flag=True,
                 help="Dump grapher results into modulemd file.")
+@click.option("-d", "--dotfile", is_flag=True,
+                help="Dump grapher results into dotfile.")
 @click.pass_context
-def graph(ctx, inputfile, generatemd):
+def graph(ctx, inputfile, generatemd, dotfile):
     ##reading input
     big3, custom, ignore = readgraphmakerinput(inputfile)
     big3 = onetimeload(big3)
 
     ##chasing deps
-    print("chasing everything at once")
+    print("...chasing everything at once")
     allset = []
     for packset in custom:
         allset+=packset[1:]
@@ -757,7 +759,7 @@ def graph(ctx, inputfile, generatemd):
         packs = packset[1:]
         packsetclust = pydot.Cluster(modname, fontname="Arial Bold",label = "proposed for " + modname)
 
-        print("drawing " + modname)
+        print("...drawing " + modname)
         #draw nodes
         uptable = packs[:]
         get_loose(uptable,deps,big3)
@@ -788,9 +790,13 @@ def graph(ctx, inputfile, generatemd):
 
     ##outputting file
     outputfilename = 'graph.svg'
-    #to obtain flat dot file: dot.write("dot.dot")
     dot.write_svg(outputfilename)
-    print("success! output to " + os.getcwd() + "/" + outputfilename)
+    print("success! graph output to " + os.getcwd() + "/" + outputfilename)
+
+    if dotfile:
+        outputfilename = 'dot.dot'
+        dot.write(outputfilename)
+        print("dotfile output to " + os.getcwd() + "/" + outputfilename)
 
     ##optional output modulemd
     if generatemd:
