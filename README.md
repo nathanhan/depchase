@@ -56,7 +56,7 @@ $ depchase -a x86_64 -c repos.cfg resolve [--selfhost] foo --hint bar
 `--selfhost` switches to searching of build dependencies
 
 ```
-$ depchase -a x86_64 -c repos.cfg graph path_to_inputfile
+$ depchase -a x86_64 -c repos.cfg graph -g path_to_inputfile
 ```
 
 ### Output
